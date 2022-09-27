@@ -12,6 +12,7 @@ Este projeto foi desenvolvido para a GameJam do Instituto Federal de Educação,
 - Carlos Henrique Mendonça Peixoto
 - Bruno Rafael Ribeiro Lemes
 - Christian Daniel Guimenes
+- Eduardo de Freitas Tonelli
 - Gabriel Rodrigues Ribeiro
 - Ivan Fernandes Pires Neto
 - João Felipe Abrahan
