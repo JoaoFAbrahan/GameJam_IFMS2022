@@ -8,10 +8,13 @@ namespace CHARACTERS
     {
         public float speed = 1;
         private float _speedScale = 1000;
+        private Rigidbody2D rb;
 
         private void Start()
         {
             speed *= _speedScale;
+            speed *= Time.deltaTime;
+            rb = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
@@ -23,7 +26,7 @@ namespace CHARACTERS
         {
             float vertical_movement = Input.GetAxis("Vertical");
             float horizontal_movement = Input.GetAxis("Horizontal");
-            gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(horizontal_movement * speed * Time.deltaTime, vertical_movement * speed * Time.deltaTime);
+            rb.velocity = new Vector2(horizontal_movement * speed , vertical_movement * speed);
         }
 
         private void DeathCondition()
