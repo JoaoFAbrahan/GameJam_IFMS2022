@@ -21,8 +21,12 @@ namespace CHARACTERS
             playerState = ENUM_PlayerState.UNPAUSED;
             _collidderController = new CODE_ColliderClass();
 
+            // Spawn a reference object from the center of map
+            _pointOfRotation = new GameObject();
+            _pointOfRotation.name = "CenterOfmap";
+            _pointOfRotation.transform.position = Vector3.zero;
+
             // Instantiating components
-            _pointOfRotation = GameObject.Find("CenterOfMap");
             _camera = Camera.main;
             _spriteObj = GameObject.Find("SpriteObj");
             this._rigidBodyRef = GetComponent<Rigidbody2D>();
