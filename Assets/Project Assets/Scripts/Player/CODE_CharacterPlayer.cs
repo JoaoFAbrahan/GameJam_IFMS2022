@@ -10,7 +10,6 @@ namespace CHARACTERS
         public float moveSpeed = 1;
 
         private float _speedFactorScale = 10;
-        private Rigidbody2D _rigidBodyRef;
         private CODE_ColliderClass _collidderController;
 
 
@@ -48,14 +47,15 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
-                    Movimentation();
                     _collidderController.ColliderEnable(_spriteObj.GetComponent<BoxCollider2D>());
+                    Movimentation();
 
                     break;
                 case ENUM_PlayerState.PAUSED:
                     // Execution in PAUSED state
-                    PlayerRotation();
                     _collidderController.ColliderDisable(_spriteObj.GetComponent<BoxCollider2D>());
+                    _rigidBodyRef.velocity = Vector2.zero;
+                    PlayerRotation();
 
                     break;
             }

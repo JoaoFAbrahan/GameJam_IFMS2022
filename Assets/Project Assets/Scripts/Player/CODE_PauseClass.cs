@@ -15,6 +15,7 @@ namespace CHARACTERS
         protected GameObject _spriteObj;
         protected GameObject _astralEnemyRef;
         protected List<GameObject> _physicEnemyRef;
+        protected Rigidbody2D _rigidBodyRef;
 
         private static ENUM_PlayerState _bPauseState = ENUM_PlayerState.UNPAUSED;
 
@@ -40,6 +41,11 @@ namespace CHARACTERS
                 playerState = FlipFlop();
 
                 // Always run on the first state cycle
+                if (playerState == ENUM_PlayerState.PAUSED)
+                {
+                    
+                }
+
                 if (playerState == ENUM_PlayerState.UNPAUSED)
                 {
                     // Reset the components rotation
