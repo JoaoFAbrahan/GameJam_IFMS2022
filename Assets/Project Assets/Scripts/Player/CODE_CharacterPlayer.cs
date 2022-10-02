@@ -4,85 +4,78 @@ using UnityEngine;
 
 namespace CHARACTERS
 {
-    public class CODE_CharacterPlayer : CODE_PauseFunction, ICODE_CharacterMovimentation
+    public class CODE_CharacterPlayer : CODE_PauseClass, ICODE_CharacterMovimentation
     {
+        // Attributes of class
         public float moveSpeed = 1;
-        public ENUM_PlayerState playerState;
 
         private float _speedFactorScale = 10;
         private Rigidbody2D _rigidBodyRef;
-        private Vector3 _oldPosition;
-        private Vector3 _newPosition;
+        private CODE_ColliderClass _collidderController;
 
 
         private void Start()
         {
-            _oldPosition = transform.position;
-            _newPosition = transform.position;
-            tilemapSceneRef = GameObject.Find("Grid");
-            moveSpeed *= _speedFactorScale;
+            // Instantiating attributes
+            this.moveSpeed *= this._speedFactorScale;
             playerState = ENUM_PlayerState.UNPAUSED;
-            //moveSpeed *= Time.deltaTime;
-            _rigidBodyRef = GetComponent<Rigidbody2D>();
+            _collidderController = new CODE_ColliderClass();
+
+            // Instantiating components
+            _pointOfRotation = GameObject.Find("CenterOfMap");
+            _camera = Camera.main;
+            _spriteObj = GameObject.Find("SpriteObj");
+            this._rigidBodyRef = GetComponent<Rigidbody2D>();
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.G))
-            {
-                playerState = FlipFlop();
-
-                if (playerState == ENUM_PlayerState.UNPAUSED)
-                {
-                    this._newPosition = this.transform.position;
-                    this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    this.transform.position = Vector3.Lerp(_oldPosition, _newPosition, 0.2f);
-                }
-            }
-
-            CheckPauseState();
+            PlayerInputPause();
+            CheckState();
         }
 
 
-        private void CheckPauseState()
+        /// <summary>
+        /// Check the running state
+        /// </summary>
+        private void CheckState()
         {
             switch (playerState)
             {
                 case ENUM_PlayerState.UNPAUSED:
-                    if (this.transform.position != _newPosition)
-                    {
-                        this._newPosition = this.transform.position;
-                        this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                        this.transform.position = Vector3.Lerp(_oldPosition, _newPosition, 0.2f);
-                    }
-                    this.GetComponent<BoxCollider2D>().enabled = true;
+                    // Execution in UNPAUSED state
                     Movimentation();
+                    _collidderController.ColliderEnable(_spriteObj.GetComponent<BoxCollider2D>());
+
                     break;
                 case ENUM_PlayerState.PAUSED:
-                    this._oldPosition = transform.position;
-                    this.GetComponent<BoxCollider2D>().enabled = false;
-                    PausePlayer();
+                    // Execution in PAUSED state
+                    PlayerRotation();
+                    _collidderController.ColliderDisable(_spriteObj.GetComponent<BoxCollider2D>());
+
                     break;
             }
         }
 
+        /// <summary>
+        /// Move the player
+        /// </summary>
         public void Movimentation()
         {
+            // Get movimentation inputs
             float vertical_movement = Input.GetAxis("Vertical");
             float horizontal_movement = Input.GetAxis("Horizontal");
-            _rigidBodyRef.velocity = new Vector2(horizontal_movement * moveSpeed, vertical_movement * moveSpeed);
+
+            // Apply movimentation
+            this._rigidBodyRef.velocity = new Vector2(horizontal_movement * moveSpeed, vertical_movement * moveSpeed);
         }
 
-        private void DeathCondition()
+        /// <summary>
+        /// GameOver Condition
+        /// </summary>
+        public void DeathCondition()
         {
-
+            // ADD COLISION OF ENEMYS
         }
-
-        public void PausePlayer()
-        {
-            this.transform.Rotate(new Vector3(0f, 0f, Time.deltaTime * speedMapRotation));
-            PauseGame();
-        }
-
     }
 }

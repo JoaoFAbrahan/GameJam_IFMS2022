@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace CHARACTERS
 {
+    /// <summary>
+    /// Enumerator of State
+    /// </summary>
     public enum ENUM_PlayerState
     {
         UNPAUSED,
