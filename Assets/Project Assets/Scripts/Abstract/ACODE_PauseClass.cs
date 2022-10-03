@@ -11,14 +11,10 @@ namespace CHARACTERS
         public ENUM_PlayerState playerState;
 
         protected GameObject _pointOfRotation;
-        protected Camera _camera;
-        protected GameObject _spriteObj;
-        protected GameObject _astralEnemyRef;
-        protected List<GameObject> _physicEnemyRef;
-        protected Rigidbody2D _rigidBodyRef;
         protected GameObject _sceneMapRef;
+        protected Rigidbody2D _rigidBodyRef;
 
-        private static ENUM_PlayerState _bPauseState = ENUM_PlayerState.UNPAUSED;
+        private static ENUM_PlayerState _pauseState = ENUM_PlayerState.UNPAUSED;
 
 
         /// <summary>
@@ -27,8 +23,8 @@ namespace CHARACTERS
         /// <returns></returns>
         protected ENUM_PlayerState FlipFlop()
         {
-            _bPauseState = _bPauseState == ENUM_PlayerState.PAUSED ? ENUM_PlayerState.UNPAUSED : ENUM_PlayerState.PAUSED;
-            return _bPauseState;
+            _pauseState = _pauseState == ENUM_PlayerState.PAUSED ? ENUM_PlayerState.UNPAUSED : ENUM_PlayerState.PAUSED;
+            return _pauseState;
         }
 
         /// <summary>
@@ -51,22 +47,17 @@ namespace CHARACTERS
                 {
                     // Reset the components rotation
                     this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    //this._camera.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    //this._spriteObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 }
             }
         }
 
         /// <summary>
-        /// Rotate player to new position
+        /// Rotate the map
         /// </summary>
-        protected void PlayerRotation()
+        protected virtual void MapRotation()
         {
-            // Rotates the player relative to the center of the map
-            //this.transform.RotateAround(_pointOfRotation.transform.position, new Vector3(0f, 0f, 1f), speedRotation * Time.deltaTime );
-            //this._camera.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
-            //this._spriteObj.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
-            this._sceneMapRef.gameObject.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * 1f));
+            // Rotates the map relative to the center of the Grid pivot
+            this._sceneMapRef.gameObject.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
         }
     }
 }
