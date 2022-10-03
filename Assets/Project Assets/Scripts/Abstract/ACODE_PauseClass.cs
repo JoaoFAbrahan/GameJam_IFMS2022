@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CHARACTERS
 {
-    public class CODE_PauseClass : MonoBehaviour
+    public abstract class ACODE_PauseClass : MonoBehaviour
     {
         // Attributes of class
         public float speedRotation = 50;
@@ -44,7 +44,7 @@ namespace CHARACTERS
                 // Always run on the first state cycle
                 if (playerState == ENUM_PlayerState.PAUSED)
                 {
-                    
+                    // IMPLEMENT
                 }
 
                 if (playerState == ENUM_PlayerState.UNPAUSED)
