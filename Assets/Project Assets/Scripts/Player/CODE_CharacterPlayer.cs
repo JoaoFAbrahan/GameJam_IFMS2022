@@ -10,7 +10,6 @@ namespace CHARACTERS
         public float moveSpeed = 1;
 
         private float _speedFactorScale = 10;
-        private Rigidbody2D _rigidBodyRef;
         private CODE_ColliderClass _collidderController;
 
 
@@ -29,7 +28,8 @@ namespace CHARACTERS
             // Instantiating components
             _camera = Camera.main;
             _spriteObj = GameObject.Find("SpriteObj");
-            this._rigidBodyRef = GetComponent<Rigidbody2D>();
+            _rigidBodyRef = GetComponent<Rigidbody2D>();
+            _sceneMapRef = GameObject.Find("Grid");
         }
 
         private void Update()
@@ -48,14 +48,15 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
-                    Movimentation();
                     _collidderController.ColliderEnable(_spriteObj.GetComponent<BoxCollider2D>());
+                    Movimentation();
 
                     break;
                 case ENUM_PlayerState.PAUSED:
                     // Execution in PAUSED state
-                    PlayerRotation();
                     _collidderController.ColliderDisable(_spriteObj.GetComponent<BoxCollider2D>());
+                    _rigidBodyRef.velocity = Vector2.zero;
+                    PlayerRotation();
 
                     break;
             }
@@ -71,7 +72,7 @@ namespace CHARACTERS
             float horizontal_movement = Input.GetAxis("Horizontal");
 
             // Apply movimentation
-            this._rigidBodyRef.velocity = new Vector2(horizontal_movement * moveSpeed, vertical_movement * moveSpeed);
+            _rigidBodyRef.velocity = new Vector2(horizontal_movement * moveSpeed, vertical_movement * moveSpeed);
         }
 
         /// <summary>
