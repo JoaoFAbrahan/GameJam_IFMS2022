@@ -8,29 +8,23 @@ namespace SONORIZATION
     {
         private float _timePassed;
         private bool _isPlayingDistorted;
+
         private void Start()
         {
-            if(this.gameObject.name == "SoundManager")
-            {
-                _mapAudioSource = GetComponent<AudioSource>();
-                PlayOst("OST_Level00");
-            }   
+            FindSMAudioSource();
         }
 
         private void Update()
         {
             if(_mapAudioSource != null)
                 _timePassed = _mapAudioSource.time;
-
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                if(_isPlayingDistorted)
-                    SwitchMainTheme("OST_Level00");
-                else
-                    SwitchMainTheme("OST_Distorted_Level00");
-            }
-
         }
+
+        public void FindSMAudioSource()
+        {
+            _mapAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
+        }
+
         public void SwitchMainTheme(string ClipName)
         {
             if(_mapAudioSource != null)
@@ -66,7 +60,7 @@ namespace SONORIZATION
             _mapAudioSource.pitch = Mathf.Clamp(_mapAudioSource.pitch, 0.5f, 1f);
         }
 
-        public void ChangeClip(string NewAudio, float TimePassed)
+        private void ChangeClip(string NewAudio, float TimePassed)
         {
             float Time = TimePassed;
             PlayOst(NewAudio);
@@ -78,12 +72,7 @@ namespace SONORIZATION
             SearchAudioClip(OstName, ostClips, _mapAudioSource);
         }
 
-        public void PlaySfx(string SfxName)
-        {
-            SearchAudioClip(SfxName, sfxClips, _enemiesAudioSource);
-        }
-
-        public void SearchAudioClip(string AudioName, List<AudioClip> AudioClips, AudioSource Source)
+        private void SearchAudioClip(string AudioName, List<AudioClip> AudioClips, AudioSource Source)
         {
             foreach (AudioClip clip in AudioClips)
             {
@@ -96,6 +85,10 @@ namespace SONORIZATION
 
             if(Source != null)
                 Source.Play();
+        }
+        public void playStepSound(AudioSource Source)
+        {
+            SearchAudioClip("SFX_PlayerStep", sfxClips, Source);
         }
     }
 }

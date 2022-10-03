@@ -10,6 +10,5 @@ namespace SONORIZATION
         public List<AudioClip> sfxClips;
 
         protected AudioSource _mapAudioSource;
-        protected AudioSource _enemiesAudioSource;
     }
 }
