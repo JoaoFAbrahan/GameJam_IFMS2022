@@ -7,7 +7,7 @@ namespace SONORIZATION
     public abstract class ACODE_AudioClips : MonoBehaviour
     {
         public List<AudioClip> ostClips;
-        public List<AudioClip> sfxSounds;
+        public List<AudioClip> sfxClips;
 
         protected AudioSource _mapAudioSource;
     }

@@ -13,8 +13,10 @@ namespace CHARACTERS
         protected GameObject _pointOfRotation;
         protected GameObject _sceneMapRef;
         protected Rigidbody2D _rigidBodyRef;
+        public SONORIZATION.CODE_SoundManager _soundManager;
 
         private static ENUM_PlayerState _pauseState = ENUM_PlayerState.UNPAUSED;
+     
 
 
         /// <summary>
@@ -40,11 +42,17 @@ namespace CHARACTERS
                 // Always run on the first state cycle
                 if (playerState == ENUM_PlayerState.PAUSED)
                 {
+                    // Toggles Distorted Level OST
+                    _soundManager.SwitchMainTheme("OST_Distorted_Level00");
+
                     // IMPLEMENT
                 }
 
                 if (playerState == ENUM_PlayerState.UNPAUSED)
                 {
+                    // Toggles Normal Level OST
+                    _soundManager.SwitchMainTheme("OST_Level00");
+
                     // Reset the components rotation
                     this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 }
