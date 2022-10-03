@@ -4,33 +4,28 @@ using UnityEngine;
 
 namespace CHARACTERS
 {
-    public class CODE_CharacterPlayer : ACODE_PauseClass, ICODE_CharacterMovimentation
+    public class CODE_CharacterEnemy : ACODE_PauseClass, ICODE_CharacterMovimentation
     {
         // Attributes of class
         public float moveSpeed = 1;
 
         private float _speedFactorScale = 10;
+        private GameObject _playerRef;
 
 
         private void Start()
         {
             // Instantiating attributes
             this.moveSpeed *= this._speedFactorScale;
-            playerState = ENUM_PlayerState.UNPAUSED;
-
-            // Spawn a reference object from the center of map
-            _pointOfRotation = new GameObject();
-            _pointOfRotation.name = "CenterOfmap";
-            _pointOfRotation.transform.position = Vector3.zero;
+            _pointOfRotation = GameObject.Find("CenterOfmap");
+            _playerRef = GameObject.Find("PFB_Player");
 
             // Instantiating components
             _rigidBodyRef = GetComponent<Rigidbody2D>();
-            _sceneMapRef = GameObject.Find("Grid");
         }
 
         private void Update()
         {
-            PlayerInputPause();
             CheckState();
         }
 
@@ -40,7 +35,8 @@ namespace CHARACTERS
         /// </summary>
         private void CheckState()
         {
-            switch (playerState)
+            // Check the player state
+            switch (_playerRef.GetComponent<CODE_CharacterPlayer>().playerState)
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
@@ -57,24 +53,17 @@ namespace CHARACTERS
         }
 
         /// <summary>
-        /// Move the player
+        /// Move the Enemy
         /// </summary>
         public void Movimentation()
         {
-            // Get movimentation inputs
-            float vertical_movement = Input.GetAxis("Vertical");
-            float horizontal_movement = Input.GetAxis("Horizontal");
 
-            // Apply movimentation
-            _rigidBodyRef.velocity = new Vector2(horizontal_movement * moveSpeed, vertical_movement * moveSpeed);
         }
 
-        /// <summary>
-        /// GameOver Condition
-        /// </summary>
-        public void DeathCondition()
+        protected override void MapRotation()
         {
-            // ADD COLISION OF ENEMYS
+            // Rotate the enemy based on the center of the map
+            this.transform.RotateAround(_pointOfRotation.transform.position, new Vector3(0f, 0f, 1f), speedRotation * Time.deltaTime );
         }
     }
 }
