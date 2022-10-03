@@ -16,6 +16,7 @@ namespace CHARACTERS
         protected GameObject _astralEnemyRef;
         protected List<GameObject> _physicEnemyRef;
         protected Rigidbody2D _rigidBodyRef;
+        protected GameObject _sceneMapRef;
 
         private static ENUM_PlayerState _bPauseState = ENUM_PlayerState.UNPAUSED;
 
@@ -50,8 +51,8 @@ namespace CHARACTERS
                 {
                     // Reset the components rotation
                     this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    this._camera.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                    this._spriteObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    //this._camera.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                    //this._spriteObj.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 }
             }
         }
@@ -62,9 +63,10 @@ namespace CHARACTERS
         protected void PlayerRotation()
         {
             // Rotates the player relative to the center of the map
-            this.transform.RotateAround(_pointOfRotation.transform.position, new Vector3(0f, 0f, 1f), speedRotation * Time.deltaTime );
-            this._camera.transform.Rotate( new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
-            this._spriteObj.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
+            //this.transform.RotateAround(_pointOfRotation.transform.position, new Vector3(0f, 0f, 1f), speedRotation * Time.deltaTime );
+            //this._camera.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
+            //this._spriteObj.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
+            this._sceneMapRef.gameObject.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * 1f));
         }
     }
 }

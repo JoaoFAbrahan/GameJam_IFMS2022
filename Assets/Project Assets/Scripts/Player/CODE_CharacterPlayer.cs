@@ -28,7 +28,8 @@ namespace CHARACTERS
             // Instantiating components
             _camera = Camera.main;
             _spriteObj = GameObject.Find("SpriteObj");
-            this._rigidBodyRef = GetComponent<Rigidbody2D>();
+            _rigidBodyRef = GetComponent<Rigidbody2D>();
+            _sceneMapRef = GameObject.Find("Grid");
         }
 
         private void Update()
@@ -71,7 +72,7 @@ namespace CHARACTERS
             float horizontal_movement = Input.GetAxis("Horizontal");
 
             // Apply movimentation
-            this._rigidBodyRef.velocity = new Vector2(horizontal_movement * moveSpeed, vertical_movement * moveSpeed);
+            _rigidBodyRef.velocity = new Vector2(horizontal_movement * moveSpeed, vertical_movement * moveSpeed);
         }
 
         /// <summary>
