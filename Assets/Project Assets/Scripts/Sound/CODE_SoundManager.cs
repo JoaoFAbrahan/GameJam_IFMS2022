@@ -6,88 +6,61 @@ namespace SONORIZATION
 {
     public class CODE_SoundManager : ACODE_AudioClips
     {
-        public float _timeNormalTrack;
-        public float _timeSlowTrack;
-        public bool _isPlayingDistorted;
-
-        public float time;
+        private float _timePassed;
+        private bool _isPlayingDistorted;
 
         private void Start()
         {
-            _mapAudioSource = GetComponent<AudioSource>();
-            PlayOst("OST_Level00");
+            FindSMAudioSource();
         }
 
         private void Update()
         {
-            _timeNormalTrack = _mapAudioSource.time;
+            if(_mapAudioSource != null)
+                _timePassed = _mapAudioSource.time;
+        }
 
-            if(Input.GetKeyDown(KeyCode.P))
-            {
-                _mapAudioSource.pitch = 1f;
-                ChangeClip("OST_Credits", 0f);
-            }
-
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                SwitchMainTheme("OST_Level00");
-            }
-
-            if(Input.GetKeyDown(KeyCode.R))
-            {
-                SwitchMainTheme("OST_Level00_Teste");
-            }
-           
-            //if(Input.GetKeyDown(KeyCode.C) && !_isPlayingDistorted)
-            //{
-            //    _isPlayingDistorted = true;
-            //    ChangeClip("OST_Level00_Teste", _timeNormalTrack);
-            //    //_timeNormalTrack = 0f;
-            //    _mapAudioSource.pitch *= 2f;
-            //    CancelInvoke(nameof(ChangePitchUp));
-            //    InvokeRepeating(nameof(ChangePitchDown), 0f, Time.deltaTime);
-            //}
-
-            //if (Input.GetKeyDown(KeyCode.V) && _isPlayingDistorted)
-            //{
-            //    _isPlayingDistorted = false;
-            //    ChangeClip("OST_Level00", _timeNormalTrack);
-            //    _mapAudioSource.pitch /= 2f;
-            //    CancelInvoke(nameof(ChangePitchDown));
-            //    InvokeRepeating(nameof(ChangePitchUp), 0f, Time.deltaTime);
-            //}
+        public void FindSMAudioSource()
+        {
+            _mapAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         }
 
         public void SwitchMainTheme(string ClipName)
         {
-            ChangeClip(ClipName, _timeNormalTrack);
-            CancelInvoke();
-            if(ClipName == "OST_Level00")
+            if(_mapAudioSource != null)
             {
-                _mapAudioSource.pitch /= 2f;
-                InvokeRepeating(nameof(ChangePitchUp), 0f, Time.deltaTime);
+                ChangeClip(ClipName, _timePassed);
+                CancelInvoke();
+                if (ClipName == "OST_Level00")
+                {
+                    _mapAudioSource.pitch /= 2f;
+                    _isPlayingDistorted = false;
+                    InvokeRepeating(nameof(ChangePitch), 0f, Time.fixedUnscaledDeltaTime);
+                }
+                else
+                {
+                    _mapAudioSource.pitch *= 2f;
+                    _isPlayingDistorted = true;
+                    InvokeRepeating(nameof(ChangePitch), 0f, Time.fixedUnscaledDeltaTime);
+                }
+            }
+        }
+
+        private void ChangePitch()
+        {
+            if(_isPlayingDistorted)
+            {
+                _mapAudioSource.pitch -= Time.deltaTime;
             }
             else
             {
-                _mapAudioSource.pitch *= 2f;
-                InvokeRepeating(nameof(ChangePitchDown), 0f, Time.deltaTime);
+                _mapAudioSource.pitch += Time.deltaTime;
             }
-        }
 
-        public void ChangePitchUp()
-        {
-            _mapAudioSource.pitch += Time.deltaTime;
             _mapAudioSource.pitch = Mathf.Clamp(_mapAudioSource.pitch, 0.5f, 1f);
         }
 
-        public void ChangePitchDown()
-        {
-            _mapAudioSource.pitch -= Time.deltaTime;
-            _mapAudioSource.pitch = Mathf.Clamp(_mapAudioSource.pitch, 0.5f, 1f);
-        }
-
-
-        public void ChangeClip(string NewAudio, float TimePassed)
+        private void ChangeClip(string NewAudio, float TimePassed)
         {
             float Time = TimePassed;
             PlayOst(NewAudio);
@@ -96,29 +69,27 @@ namespace SONORIZATION
 
         public void PlayOst(string OstName)
         {
-            SearchAudioClip(OstName, ostClips);
+            SearchAudioClip(OstName, ostClips, _mapAudioSource);
         }
 
-        public void SearchAudioClip(string AudioName, List<AudioClip> AudioClips)
+        private void SearchAudioClip(string AudioName, List<AudioClip> AudioClips, AudioSource Source)
         {
-            Debug.Log(AudioClips.ToString());
             foreach (AudioClip clip in AudioClips)
             {
                 if (clip.name == AudioName)
                 {
-                    _mapAudioSource.clip = clip;
+                    Source.clip = clip;
                     break;
                 }
             }
-            PlayClip();
-        }
 
-        public void PlayClip()
+            if(Source != null)
+                Source.Play();
+        }
+        public void playStepSound(AudioSource Source)
         {
-            _mapAudioSource.Play();
+            SearchAudioClip("SFX_PlayerStep", sfxClips, Source);
         }
-
-
     }
 }
 
