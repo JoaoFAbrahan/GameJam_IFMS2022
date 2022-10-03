@@ -128,6 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5737266801952180565}
   - component: {fileID: 5737266801952180562}
+  - component: {fileID: 6272018915465450937}
   - component: {fileID: 5737266801952180563}
   m_Layer: 0
   m_Name: PFB_Player
@@ -174,6 +175,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!111 &6272018915465450937
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737266801952180560}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 5e8a5c8daae4e4c4282a74685dda194d, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 5e8a5c8daae4e4c4282a74685dda194d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &5737266801952180563
 MonoBehaviour:
   m_ObjectHideFlags: 0
