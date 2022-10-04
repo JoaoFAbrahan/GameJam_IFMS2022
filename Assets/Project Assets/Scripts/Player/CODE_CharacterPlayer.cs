@@ -56,8 +56,18 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
-                    _playerAnimator.SetBool("hasPaused", false);
-                    Movimentation();
+                    Collider2D[] intersecting = Physics2D.OverlapCircleAll(transform.position, 0.1f, LayerMask.GetMask("Wall"));
+                    if(intersecting.Length != 0)
+                    {
+                        this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
+                        MapRotation();
+                    }
+                    else
+                    {
+                        this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
+                        _playerAnimator.SetBool("hasPaused", false);
+                        Movimentation();
+                    }
 
                     break;
                 case ENUM_PlayerState.PAUSED:
