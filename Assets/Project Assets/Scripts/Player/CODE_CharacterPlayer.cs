@@ -13,6 +13,7 @@ namespace CHARACTERS
         private float _speedFactorScale = 2;
         private float _timeBetweenSteps;
         private AudioSource _playerAudioSource;
+        private Animator _playerAnimator;
 
         private void Start()
         {
@@ -21,6 +22,7 @@ namespace CHARACTERS
             this._timeBetweenSteps = this.moveSpeed * stepSpeedFactor;
             playerState = ENUM_PlayerState.UNPAUSED;
             _playerAudioSource = GetComponent<AudioSource>();
+            _playerAnimator = GetComponentInChildren<Animator>();
             _soundManager = GameObject.Find("SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
 
@@ -54,12 +56,14 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
+                    _playerAnimator.SetBool("hasPaused", false);
                     Movimentation();
 
                     break;
                 case ENUM_PlayerState.PAUSED:
                     // Execution in PAUSED state
                     _rigidBodyRef.velocity = Vector2.zero;
+                    _playerAnimator.SetBool("hasPaused", true);
                     MapRotation();
 
                     break;
@@ -92,8 +96,13 @@ namespace CHARACTERS
                 this.transform.GetChild(0).transform.rotation = Quaternion.RotateTowards(this.transform.GetChild(0).transform.rotation, SpriteAngle, 500 * Time.deltaTime);
             }
 
+          
+
             // Apply movimentation
-            _rigidBodyRef.velocity = new Vector2(horizontal_movement * moveSpeed, vertical_movement * moveSpeed);
+            _rigidBodyRef.velocity = (new Vector2(horizontal_movement, vertical_movement).normalized) * moveSpeed;
+
+            // Play animation
+            AnimationController();
         }
 
         /// <summary>
@@ -115,6 +124,18 @@ namespace CHARACTERS
                 _timeBetweenSteps = moveSpeed * stepSpeedFactor;
                 _soundManager.playStepSound(_playerAudioSource);
             }
+        }
+
+        /// <summary>
+        /// Play the animations
+        /// </summary>
+        /// 
+        private void AnimationController()
+        {
+            if (Mathf.Abs(_rigidBodyRef.velocity.x) > 0.01f || Mathf.Abs(_rigidBodyRef.velocity.y) > 0.01f)
+                _playerAnimator.SetBool("isWalking", true);
+            else
+                _playerAnimator.SetBool("isWalking", false);
         }
     }
 }
