@@ -56,12 +56,14 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
+                    _playerAnimator.SetBool("hasPaused", false);
                     Movimentation();
 
                     break;
                 case ENUM_PlayerState.PAUSED:
                     // Execution in PAUSED state
                     _rigidBodyRef.velocity = Vector2.zero;
+                    _playerAnimator.SetBool("hasPaused", true);
                     MapRotation();
 
                     break;
@@ -131,9 +133,9 @@ namespace CHARACTERS
         private void AnimationController()
         {
             if (Mathf.Abs(_rigidBodyRef.velocity.x) > 0.01f || Mathf.Abs(_rigidBodyRef.velocity.y) > 0.01f)
-                _playerAnimator.SetBool("speed", true);
+                _playerAnimator.SetBool("isWalking", true);
             else
-                _playerAnimator.SetBool("speed", false);
+                _playerAnimator.SetBool("isWalking", false);
         }
     }
 }
