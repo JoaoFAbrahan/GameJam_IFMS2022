@@ -56,18 +56,9 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
-                    Collider2D[] intersecting = Physics2D.OverlapCircleAll(new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), 0.1f, LayerMask.GetMask("Wall"));
-                    if (intersecting.Length != 0)
-                    {
-                        this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
-                        MapRotation();
-                    }
-                    else
-                    {
-                        this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
-                        _playerAnimator.SetBool("hasPaused", false);
-                        Movimentation();
-                    }
+                    _playerAnimator.SetBool("hasPaused", false);
+                    Movimentation();
+
                     break;
                 case ENUM_PlayerState.PAUSED:
                     // Execution in PAUSED state
@@ -104,7 +95,7 @@ namespace CHARACTERS
                 this.transform.GetChild(0).transform.rotation = Quaternion.RotateTowards(this.transform.GetChild(0).transform.rotation, SpriteAngle, 5000 * Time.deltaTime);
             }
 
-
+          
 
             // Apply movimentation
             _rigidBodyRef.velocity = (new Vector2(horizontal_movement, vertical_movement).normalized * moveSpeed);
@@ -137,7 +128,7 @@ namespace CHARACTERS
         /// <summary>
         /// Play the animations
         /// </summary>
-        ///
+        /// 
         private void AnimationController()
         {
             if (Mathf.Abs(_rigidBodyRef.velocity.x) > 0.01f || Mathf.Abs(_rigidBodyRef.velocity.y) > 0.01f)
