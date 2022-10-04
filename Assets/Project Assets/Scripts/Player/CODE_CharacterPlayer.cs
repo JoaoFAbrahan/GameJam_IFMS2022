@@ -56,7 +56,7 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
-                    Collider2D[] intersecting = Physics2D.OverlapCircleAll(new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), 0.01f, LayerMask.GetMask("Wall"));
+                    Collider2D[] intersecting = Physics2D.OverlapCircleAll(new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), 0.1f, LayerMask.GetMask("Wall"));
                     if (intersecting.Length != 0)
                     {
                         this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
