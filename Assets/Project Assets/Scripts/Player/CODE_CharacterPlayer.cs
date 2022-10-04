@@ -76,7 +76,6 @@ namespace CHARACTERS
         public void Movimentation()
         {
             Vector2 LookDirection;
-            Vector2 SpriteDirection;
             Quaternion SpriteAngle;
 
             // Get movimentation inputs
