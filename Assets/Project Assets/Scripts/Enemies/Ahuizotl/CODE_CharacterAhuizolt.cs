@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace CHARACTERS
 {
-    public class CODE_CharacterEnemy : ACODE_PauseClass, ICODE_CharacterMovimentation
+    public class CODE_CharacterAhuizolt : ACODE_PauseClass, ICODE_CharacterMovimentation
     {
         // Attributes of class
         public float moveSpeed = 1;

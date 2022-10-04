@@ -44,7 +44,7 @@ namespace CHARACTERS
                 {
                     // Toggles Distorted Level OST
                     _soundManager.SwitchMainTheme("OST_Distorted_Level00");
-
+                    this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
                     // IMPLEMENT
                 }
 
@@ -52,8 +52,8 @@ namespace CHARACTERS
                 {
                     // Toggles Normal Level OST
                     _soundManager.SwitchMainTheme("OST_Level00");
-
                     // Reset the components rotation
+                    this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
                     this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 }
             }
@@ -65,7 +65,7 @@ namespace CHARACTERS
         protected virtual void MapRotation()
         {
             // Rotates the map relative to the center of the Grid pivot
-            this._sceneMapRef.gameObject.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
+            this._sceneMapRef.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
         }
     }
 }
