@@ -236,6 +236,10 @@ PrefabInstance:
       value: PFB_Player
       objectReference: {fileID: 0}
     - target: {fileID: 5737266801952180563, guid: 3b085e9be97ba544d868b4f22bed1236, type: 3}
+      propertyPath: moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5737266801952180563, guid: 3b085e9be97ba544d868b4f22bed1236, type: 3}
       propertyPath: speedRotation
       value: 30
       objectReference: {fileID: 0}
