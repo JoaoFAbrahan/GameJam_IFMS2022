@@ -53,9 +53,18 @@ namespace CHARACTERS
             switch (playerState)
             {
                 case ENUM_PlayerState.UNPAUSED:
-                    // Execution in UNPAUSED state
-                    Movimentation();
-
+                    Collider2D[] intersecting = Physics2D.OverlapCircleAll(new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y), 0.01f, LayerMask.GetMask("Wall"));
+                    if (intersecting.Length != 0)
+                    {
+                        //code to run if intersecting
+                        MapRotation();
+                        this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
+                    }
+                    else
+                    {
+                        Movimentation();
+                        this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
+                    }
                     break;
                 case ENUM_PlayerState.PAUSED:
                     // Execution in PAUSED state
