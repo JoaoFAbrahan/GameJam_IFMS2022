@@ -88,7 +88,7 @@ namespace SONORIZATION
         }
         public void playStepSound(AudioSource Source)
         {
-            SearchAudioClip("SFX_PlayerStep", sfxClips, Source);
+            SearchAudioClip("SFX_PlayerStep2", sfxClips, Source);
         }
     }
 }
