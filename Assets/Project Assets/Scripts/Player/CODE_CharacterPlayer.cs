@@ -25,6 +25,7 @@ namespace CHARACTERS
             _playerAnimator = GetComponentInChildren<Animator>();
             _soundManager = GameObject.Find("SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
+            _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
 
             // Play OST_Level00 for the first time
             _soundManager.PlayOst("OST_Level00");
@@ -43,10 +44,17 @@ namespace CHARACTERS
         private void Update()
         {
             PlayerInputPause();
+            if (_playerColliderChecker.isColliding)
+            {
+                ColliderException(); // Change to RB.Kinematic
+            }
+            else if (pressedPause) // Will change player state to UNPAUSED automatically after PAUSED + COLLIDING + INPUT
+            {
+                pressedPause = false;
+                CheckStateAfterInput();
+            }
             CheckState();
         }
-
-
         /// <summary>
         /// Check the running state
         /// </summary>
@@ -95,7 +103,7 @@ namespace CHARACTERS
                 this.transform.GetChild(0).transform.rotation = Quaternion.RotateTowards(this.transform.GetChild(0).transform.rotation, SpriteAngle, 5000 * Time.deltaTime);
             }
 
-          
+
 
             // Apply movimentation
             _rigidBodyRef.velocity = (new Vector2(horizontal_movement, vertical_movement).normalized * moveSpeed);
@@ -138,3 +146,11 @@ namespace CHARACTERS
         }
     }
 }
+
+
+
+
+
+
+
+
