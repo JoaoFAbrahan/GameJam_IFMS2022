@@ -93,13 +93,13 @@ namespace CHARACTERS
             if (LookDirection != Vector2.zero)
             {
                 SpriteAngle = Quaternion.LookRotation(Vector3.forward, LookDirection);
-                this.transform.GetChild(0).transform.rotation = Quaternion.RotateTowards(this.transform.GetChild(0).transform.rotation, SpriteAngle, 500 * Time.deltaTime);
+                this.transform.GetChild(0).transform.rotation = Quaternion.RotateTowards(this.transform.GetChild(0).transform.rotation, SpriteAngle, 5000 * Time.deltaTime);
             }
 
           
 
             // Apply movimentation
-            _rigidBodyRef.velocity = (new Vector2(horizontal_movement, vertical_movement).normalized) * moveSpeed;
+            _rigidBodyRef.velocity = (new Vector2(horizontal_movement, vertical_movement).normalized * moveSpeed);
 
             // Play animation
             AnimationController();
