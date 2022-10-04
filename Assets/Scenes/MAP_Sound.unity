@@ -283,6 +283,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2204118206713227386, guid: 3b085e9be97ba544d868b4f22bed1236, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2204118206713227386, guid: 3b085e9be97ba544d868b4f22bed1236, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5737266801952180560, guid: 3b085e9be97ba544d868b4f22bed1236, type: 3}
       propertyPath: m_Name
       value: PFB_Player
