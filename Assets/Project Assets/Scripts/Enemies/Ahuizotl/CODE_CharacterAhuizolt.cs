@@ -20,6 +20,8 @@ namespace CHARACTERS
         private RaycastHit2D _raycastHit;
         private GameObject _spriteObjRef;
         private ENVIRONMENT.CODE_ColliderClass _colliderController;
+        private static float _randomTime = 0;
+        private static GameObject _tempDirection;
 
 
         private void Start()
@@ -32,6 +34,8 @@ namespace CHARACTERS
             this._wallLayer = LayerMask.GetMask("Wall");
             this._agent.Target = _playerRef.transform.GetChild(0).transform;
             this._agent.CanMove = false;
+            _tempDirection = new GameObject();
+            _tempDirection.transform.position = new Vector2(Random.RandomRange(-4f, 4f), Random.RandomRange(-4f, 4f));
             _pointOfRotation = GameObject.Find("Grid");
 
             // Instantiating components
@@ -71,6 +75,7 @@ namespace CHARACTERS
                     _colliderController.ColliderDisable(_spriteObjRef.GetComponent<BoxCollider2D>());
                     _rigidBodyRef.velocity = Vector2.zero;
                     _agent.CanMove = false;
+                    _agent.Target = _tempDirection.transform;
                     MapRotation();
 
                     break;
@@ -91,18 +96,21 @@ namespace CHARACTERS
                 if (!Physics2D.Linecast(this.transform.position, _playerRef.transform.position, _wallLayer))
                 {
                     // Move the enemy in player direction
+                    _agent.Target = _playerRef.transform.GetChild(0).transform;
                     _agent.CanMove = true;
                 }
                 else
                 {
                     // Stop the enemy
                     _agent.CanMove = false;
+                    MoveRandomize();
                 }
             }
             else
             {
                 // Stop the enemy
                 _agent.CanMove = false;
+                MoveRandomize();
             }
         }
 
@@ -110,6 +118,22 @@ namespace CHARACTERS
         {
             // Rotate the enemy based on the center of the map            
             this.transform.RotateAround(_pointOfRotation.transform.position, new Vector3(0f, 0f, 1f), speedRotation * Time.deltaTime * -1f);
+        }
+
+        private void MoveRandomize()
+        {
+            if (_randomTime <= 0)
+            {
+                _randomTime = Random.RandomRange(3, 12);
+                _tempDirection = new GameObject();
+                _tempDirection.transform.position = new Vector2(Random.RandomRange(-4f, 4f), Random.RandomRange(-4f, 4f));
+                _agent.Target = _tempDirection.transform;
+            }
+            else
+            {
+                _agent.CanMove = true;
+                _randomTime -= Time.deltaTime;
+            }            
         }
     }
 }
