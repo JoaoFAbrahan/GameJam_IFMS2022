@@ -22,6 +22,7 @@ namespace CHARACTERS
         private ENVIRONMENT.CODE_ColliderClass _colliderController;
         private static float _randomTime = 0;
         private static GameObject _tempDirection;
+        private float _distanceCenterToMonster;
 
 
         private void Start()
@@ -29,6 +30,7 @@ namespace CHARACTERS
             // Instantiating attributes
             this.moveSpeed *= this._speedFactorScale;
             this._playerRef = GameObject.Find("PFB_Player");
+            speedRotation = _playerRef.GetComponent<CODE_CharacterPlayer>().speedRotation;
             this._agent = this.GetComponent<SAP2DAgent>();
             this._playerLayer = LayerMask.GetMask("Player");
             this._wallLayer = LayerMask.GetMask("Wall");
@@ -116,8 +118,9 @@ namespace CHARACTERS
 
         protected override void MapRotation()
         {
-            // Rotate the enemy based on the center of the map            
-            this.transform.RotateAround(_pointOfRotation.transform.position, new Vector3(0f, 0f, 1f), speedRotation * Time.deltaTime * -1f);
+            // Rotate the enemy based on the center of the map
+            _distanceCenterToMonster = Vector2.Distance(_pointOfRotation.transform.position, _playerRef.transform.position);
+            this.transform.RotateAround(_pointOfRotation.transform.position, new Vector3(0f, 0f, 1f), (speedRotation * Time.deltaTime / _distanceCenterToMonster)  * -1f);
         }
 
         private void MoveRandomize()
