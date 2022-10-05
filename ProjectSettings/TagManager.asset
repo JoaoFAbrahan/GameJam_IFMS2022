@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Miner
+  - Zombie
   layers:
   - Default
   - TransparentFX
@@ -12,8 +14,8 @@ TagManager:
   - Water
   - UI
   - OutOfMap
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -40,4 +42,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 759404063
+    locked: 0
+  - name: Wall
+    uniqueID: 1227473785
+    locked: 0
+  - name: Player
+    uniqueID: 1649747283
+    locked: 0
+  - name: Enemy
+    uniqueID: 3647116569
     locked: 0
