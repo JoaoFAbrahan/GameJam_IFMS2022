@@ -71,7 +71,7 @@ MonoBehaviour:
   Config: {fileID: 11400000, guid: b326ffdf8cda603499980307d04a352b, type: 2}
   MouseControl: 0
   Target: {fileID: 0}
-  CanMove: 1
+  CanMove: 0
   MovementSpeed: 5
   RotationSpeed: 500
   isMoving: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9df7335610fbe4b8713db9a3506ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedRotation: 50
+  speedRotation: 30
   playerState: 0
   pressedPause: 0
   moveSpeed: 4
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 2004372279341867267}
   - component: {fileID: 2004372279341867264}
   - component: {fileID: 8553443617186190451}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: SpriteObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,14 +128,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004372279341867326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.655631}
+  m_LocalRotation: {x: 0, y: -0, z: 0.70710737, w: -0.7071063}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004372278388773087}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 990}
 --- !u!212 &2004372279341867267
 SpriteRenderer:
   m_ObjectHideFlags: 0

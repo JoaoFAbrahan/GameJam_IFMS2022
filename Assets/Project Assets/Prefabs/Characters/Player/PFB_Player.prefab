@@ -575,8 +575,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1649747283
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -15423944, guid: 5f63fe3a618d19147b9d314c6f09a7a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -677,7 +677,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 000000001f96432d79c32949
+  m_ApplyToSortingLayers: 000000001f96432d79c3294953255562199562d9
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -743,6 +743,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5737266802085870213}
     m_Modifications:
+    - target: {fileID: 4004264395564358164, guid: 44d4048184710554881201960042f18b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4004264395564358164, guid: 44d4048184710554881201960042f18b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1649747283
+      objectReference: {fileID: 0}
     - target: {fileID: 4004264395564358165, guid: 44d4048184710554881201960042f18b, type: 3}
       propertyPath: m_Name
       value: Flame
