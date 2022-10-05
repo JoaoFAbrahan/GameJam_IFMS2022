@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedRotation: 50
   playerState: 0
-  _soundManager: {fileID: 0}
+  pressedPause: 0
   moveSpeed: 4
 --- !u!1 &2004372279341867326
 GameObject:
@@ -125,7 +125,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 21d8e7421ecb34e4984df00b4e0efdb3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
