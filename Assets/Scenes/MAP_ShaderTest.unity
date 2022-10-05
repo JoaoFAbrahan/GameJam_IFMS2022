@@ -244,7 +244,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2222610805017210235, guid: ec448de736c2a3e4ca483af961d03919, type: 3}
       propertyPath: m_Name
-      value: Test_Maze
+      value: Grid
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec448de736c2a3e4ca483af961d03919, type: 3}
