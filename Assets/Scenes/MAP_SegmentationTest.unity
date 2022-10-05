@@ -332,6 +332,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_Ahuizotl
       objectReference: {fileID: 0}
+    - target: {fileID: 2004372278388773082, guid: ed85775e02b854647b0b4030060cfecc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2004372278388773087, guid: ed85775e02b854647b0b4030060cfecc, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -678,5 +682,13 @@ PrefabInstance:
       propertyPath: m_Volume
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 6693031196273058708, guid: 6a12666c4e923644abb78ad71ac6998d, type: 3}
+      propertyPath: ostClips.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6693031196273058708, guid: 6a12666c4e923644abb78ad71ac6998d, type: 3}
+      propertyPath: ostClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 9cf801a9159a7854faf7383aa968d5ed, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a12666c4e923644abb78ad71ac6998d, type: 3}

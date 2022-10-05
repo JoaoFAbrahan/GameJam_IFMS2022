@@ -32,7 +32,7 @@ namespace CHARACTERS
             _playerDeathChecker = this.transform.GetChild(0).GetComponent<CODE_PlayerColliderChecker>();
 
             // Play OST_Level00 for the first time
-            _soundManager.PlayOst("OST_Level00");
+            _soundManager.PlayOSTLevel();
 
             // Instantiating components
             _rigidBodyRef = GetComponent<Rigidbody2D>();
@@ -124,7 +124,7 @@ namespace CHARACTERS
             {
                 isDead = true;
                 playerState = ENUM_PlayerState.UNPAUSED;
-                _soundManager.PlayOst("OST_GameOver");
+                _soundManager.PlayOSTGameOver();
             }
         }
 

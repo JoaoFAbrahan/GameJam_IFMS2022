@@ -35,6 +35,10 @@ namespace CHARACTERS
         /// </summary>
         protected void PlayerInputPause()
         {
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                _soundManager.PlayOSTOutOfTime();
+            }
             // Unique state which the player is PAUSED, COLLIDING and PRESSING SPACE
             if (Input.GetKeyDown(KeyCode.Space) && _playerColliderChecker.isColliding && playerState == ENUM_PlayerState.PAUSED)
             {
