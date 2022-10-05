@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6693031196273058667}
   - component: {fileID: 6693031196273058708}
   m_Layer: 0
-  m_Name: SoundManager
+  m_Name: PFB_SoundManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

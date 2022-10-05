@@ -23,7 +23,7 @@ namespace CHARACTERS
             playerState = ENUM_PlayerState.UNPAUSED;
             _playerAudioSource = GetComponent<AudioSource>();
             _playerAnimator = GetComponentInChildren<Animator>();
-            _soundManager = GameObject.Find("SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
+            _soundManager = GameObject.Find("PFB_SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
             _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
 

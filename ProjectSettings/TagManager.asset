@@ -15,7 +15,7 @@ TagManager:
   - UI
   - OutOfMap
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -51,4 +51,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1649747283
+    locked: 0
+  - name: Enemy
+    uniqueID: 3647116569
     locked: 0
