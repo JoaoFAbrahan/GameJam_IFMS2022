@@ -19,6 +19,7 @@ namespace CHARACTERS
         protected CapsuleCollider2D _playerCollider;
 
         private static ENUM_PlayerState _pauseState = ENUM_PlayerState.UNPAUSED;
+        private float _distanceCenterToPlayer;
 
         /// <summary>
         /// Controller of the toggles state
@@ -83,7 +84,8 @@ namespace CHARACTERS
         protected virtual void MapRotation()
         {
             // Rotates the map relative to the center of the Grid pivot
-            this._sceneMapRef.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
+            _distanceCenterToPlayer = Vector2.Distance(this._sceneMapRef.transform.position, this.transform.position);
+            this._sceneMapRef.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f) / _distanceCenterToPlayer);
         }
 
         protected void ColliderException()
