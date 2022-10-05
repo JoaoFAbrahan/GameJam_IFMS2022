@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004372278388773087}
   - component: {fileID: 2004372278388773084}
+  - component: {fileID: 2044659307120793177}
   - component: {fileID: 2004372278388773085}
   m_Layer: 0
   m_Name: PFB_Ahuizotl
@@ -55,6 +56,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2044659307120793177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004372278388773082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436bc0f096be0d34ba379a789d03ec45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Config: {fileID: 11400000, guid: b326ffdf8cda603499980307d04a352b, type: 2}
+  MouseControl: 0
+  Target: {fileID: 0}
+  CanMove: 1
+  MovementSpeed: 5
+  RotationSpeed: 500
+  isMoving: 0
+  pathIndex: 0
+  posInGrid: {x: 0, y: 0, z: 0}
+  CanSearch: 1
+  PathUpdateRate: 0.15
+  GetNextPointDistance: 0.1
+  ShowGraphic: 1
+  color:
+    serializedVersion: 2
+    rgba: 4292990208
+  path: []
 --- !u!114 &2004372278388773085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,8 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedRotation: 50
   playerState: 0
-  _soundManager: {fileID: 0}
+  pressedPause: 0
   moveSpeed: 4
+  sizeTargetArea: 5
 --- !u!1 &2004372279341867326
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,7 +113,8 @@ GameObject:
   - component: {fileID: 2004372279341867265}
   - component: {fileID: 2004372279341867267}
   - component: {fileID: 2004372279341867264}
-  m_Layer: 0
+  - component: {fileID: 8553443617186190451}
+  m_Layer: 8
   m_Name: SpriteObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,10 +174,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -647850727
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1471669452, guid: 41660d32094fcc44c996397dab3b20db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -173,7 +205,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -182,3 +214,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &8553443617186190451
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004372279341867326}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1361f02c524cc7f4e886d8ea9dc66e0e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

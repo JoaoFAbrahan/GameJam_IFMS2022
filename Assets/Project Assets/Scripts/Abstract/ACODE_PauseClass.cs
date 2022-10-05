@@ -9,15 +9,15 @@ namespace CHARACTERS
         // Attributes of class
         public float speedRotation = 50;
         public ENUM_PlayerState playerState;
+        public bool pressedPause;
 
         protected GameObject _pointOfRotation;
         protected GameObject _sceneMapRef;
         protected Rigidbody2D _rigidBodyRef;
-        public SONORIZATION.CODE_SoundManager _soundManager;
+        protected SONORIZATION.CODE_SoundManager _soundManager;
+        protected CODE_PlayerColliderChecker _playerColliderChecker;
 
         private static ENUM_PlayerState _pauseState = ENUM_PlayerState.UNPAUSED;
-     
-
 
         /// <summary>
         /// Controller of the toggles state
@@ -34,28 +34,43 @@ namespace CHARACTERS
         /// </summary>
         protected void PlayerInputPause()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            // Unique state which the player is PAUSED, COLLIDING and PRESSING SPACE
+            if (Input.GetKeyDown(KeyCode.Space) && _playerColliderChecker.isColliding && playerState == ENUM_PlayerState.PAUSED)
             {
-                // Toggles state
-                playerState = FlipFlop();
+                // Save press input
+                pressedPause = true;
+            }
 
-                // Always run on the first state cycle
-                if (playerState == ENUM_PlayerState.PAUSED)
+            if (Input.GetKeyDown(KeyCode.Space) && !pressedPause)
+            {
+                if (!_playerColliderChecker.isColliding)
                 {
-                    // Toggles Distorted Level OST
-                    _soundManager.SwitchMainTheme("OST_Distorted_Level00");
-                    this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
-                    // IMPLEMENT
+                    // Always run on the first state cycle
+                    CheckStateAfterInput();
                 }
+            }
+        }
 
-                if (playerState == ENUM_PlayerState.UNPAUSED)
-                {
-                    // Toggles Normal Level OST
-                    _soundManager.SwitchMainTheme("OST_Level00");
-                    // Reset the components rotation
-                    this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
-                    this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                }
+        protected void CheckStateAfterInput() 
+        {
+            // Toggles state
+            playerState = FlipFlop();
+
+            if (playerState == ENUM_PlayerState.PAUSED)
+            {
+                // Toggles Distorted Level OST
+                _soundManager.SwitchMainTheme("OST_Distorted_Level00");
+                this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
+                // IMPLEMENT
+            }
+
+            if (playerState == ENUM_PlayerState.UNPAUSED)
+            {
+                // Toggles Normal Level OST
+                _soundManager.SwitchMainTheme("OST_Level00");
+                // Reset the components rotation
+                this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
+                this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
         }
 
@@ -66,6 +81,16 @@ namespace CHARACTERS
         {
             // Rotates the map relative to the center of the Grid pivot
             this._sceneMapRef.transform.Rotate(new Vector3(0f, 0f, speedRotation * Time.deltaTime * -1f));
+        }
+
+        protected void ColliderException()
+        {
+            // Always run on the first state cycle
+            if (playerState == ENUM_PlayerState.PAUSED)
+            {
+                this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
+                // IMPLEMENT
+            }
         }
     }
 }
