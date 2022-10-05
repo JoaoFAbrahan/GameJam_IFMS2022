@@ -16,6 +16,7 @@ namespace CHARACTERS
         protected Rigidbody2D _rigidBodyRef;
         protected SONORIZATION.CODE_SoundManager _soundManager;
         protected CODE_PlayerColliderChecker _playerColliderChecker;
+        protected CapsuleCollider2D _playerCollider;
 
         private static ENUM_PlayerState _pauseState = ENUM_PlayerState.UNPAUSED;
 
@@ -60,7 +61,8 @@ namespace CHARACTERS
             {
                 // Toggles Distorted Level OST
                 _soundManager.SwitchMainTheme("OST_Distorted_Level00");
-                this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
+                _playerCollider.enabled = false;
+                //this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
                 // IMPLEMENT
             }
 
@@ -69,7 +71,8 @@ namespace CHARACTERS
                 // Toggles Normal Level OST
                 _soundManager.SwitchMainTheme("OST_Level00");
                 // Reset the components rotation
-                this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
+                _playerCollider.enabled = true;
+                //this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
                 this.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
         }
