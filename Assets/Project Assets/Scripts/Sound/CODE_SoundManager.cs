@@ -44,7 +44,7 @@ namespace SONORIZATION
                     _isPlayingDistorted = false;
                     InvokeRepeating(nameof(ChangePitch), 0f, Time.fixedUnscaledDeltaTime);
                 }
-                else
+                else if(ClipName == "OST_Distorted_Level00")
                 {
                     // Double the pitch to apply the transition effect
                     _mapAudioSource.pitch *= 2f;
@@ -106,6 +106,13 @@ namespace SONORIZATION
             }
 
             if(Source != null)
+                if(AudioName == "OST_GameOver")
+                {
+                    _mapAudioSource.pitch = 1f;
+                    _mapAudioSource.time = 0f;
+                    _mapAudioSource.loop = false;
+                    _isPlayingDistorted = false;
+                }
                 Source.Play();
         }
 
