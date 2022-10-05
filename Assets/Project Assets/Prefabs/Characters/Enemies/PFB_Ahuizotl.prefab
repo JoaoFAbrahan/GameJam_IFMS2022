@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004372278388773087}
   - component: {fileID: 2004372278388773084}
+  - component: {fileID: 2044659307120793177}
   - component: {fileID: 2004372278388773085}
   m_Layer: 0
   m_Name: PFB_Ahuizotl
@@ -55,6 +56,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &2044659307120793177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004372278388773082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 436bc0f096be0d34ba379a789d03ec45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Config: {fileID: 11400000, guid: b326ffdf8cda603499980307d04a352b, type: 2}
+  MouseControl: 0
+  Target: {fileID: 0}
+  CanMove: 0
+  MovementSpeed: 5
+  RotationSpeed: 500
+  isMoving: 0
+  pathIndex: 0
+  posInGrid: {x: 0, y: 0, z: 0}
+  CanSearch: 1
+  PathUpdateRate: 0.15
+  GetNextPointDistance: 0.1
+  ShowGraphic: 1
+  color:
+    serializedVersion: 2
+    rgba: 4292990208
+  path: []
 --- !u!114 &2004372278388773085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,10 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9df7335610fbe4b8713db9a3506ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedRotation: 50
+  speedRotation: 30
   playerState: 0
   pressedPause: 0
   moveSpeed: 4
+  sizeTargetArea: 5
 --- !u!1 &2004372279341867326
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,14 +128,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004372279341867326}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.655631}
+  m_LocalRotation: {x: 0, y: -0, z: 0.70710737, w: -0.7071063}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2004372278388773087}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 990}
 --- !u!212 &2004372279341867267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -143,8 +174,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -647850727
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -1471669452, guid: 41660d32094fcc44c996397dab3b20db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
