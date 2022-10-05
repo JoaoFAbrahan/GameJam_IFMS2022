@@ -20,20 +20,15 @@ namespace CHARACTERS
             // Instantiating attributes
             this.moveSpeed *= this._speedFactorScale;
             this._timeBetweenSteps = this.moveSpeed * stepSpeedFactor;
+            this._playerAudioSource = GetComponent<AudioSource>();
+            this._playerAnimator = GetComponentInChildren<Animator>();
             playerState = ENUM_PlayerState.UNPAUSED;
-            _playerAudioSource = GetComponent<AudioSource>();
-            _playerAnimator = GetComponentInChildren<Animator>();
             _soundManager = GameObject.Find("PFB_SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
             _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
 
             // Play OST_Level00 for the first time
             _soundManager.PlayOst("OST_Level00");
-
-            // Spawn a reference object from the center of map
-            _pointOfRotation = new GameObject();
-            _pointOfRotation.name = "CenterOfmap";
-            _pointOfRotation.transform.position = Vector3.zero;
 
             // Instantiating components
             _rigidBodyRef = GetComponent<Rigidbody2D>();
@@ -53,6 +48,8 @@ namespace CHARACTERS
                 pressedPause = false;
                 CheckStateAfterInput();
             }
+
+
             CheckState();
         }
         /// <summary>
@@ -64,24 +61,14 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
-                    Collider2D[] intersecting = Physics2D.OverlapCircleAll(transform.position, 0.1f, LayerMask.GetMask("Wall"));
-                    if(intersecting.Length != 0)
-                    {
-                        this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
-                        MapRotation();
-                    }
-                    else
-                    {
-                        this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
-                        _playerAnimator.SetBool("hasPaused", false);
-                        Movimentation();
-                    }
+                    this._playerAnimator.SetBool("hasPaused", false);
+                    Movimentation();
 
                     break;
                 case ENUM_PlayerState.PAUSED:
                     // Execution in PAUSED state
                     _rigidBodyRef.velocity = Vector2.zero;
-                    _playerAnimator.SetBool("hasPaused", true);
+                    this._playerAnimator.SetBool("hasPaused", true);
                     MapRotation();
 
                     break;
@@ -110,7 +97,7 @@ namespace CHARACTERS
             if (LookDirection != Vector2.zero)
             {
                 SpriteAngle = Quaternion.LookRotation(Vector3.forward, LookDirection);
-                this.transform.GetChild(0).transform.rotation = Quaternion.RotateTowards(this.transform.GetChild(0).transform.rotation, SpriteAngle, 5000 * Time.deltaTime);
+                this.transform.GetChild(0).transform.rotation = Quaternion.RotateTowards(this.transform.GetChild(0).transform.rotation, SpriteAngle, 10000 * Time.deltaTime);
             }
 
 
@@ -150,9 +137,9 @@ namespace CHARACTERS
         private void AnimationController()
         {
             if (Mathf.Abs(_rigidBodyRef.velocity.x) > 0.01f || Mathf.Abs(_rigidBodyRef.velocity.y) > 0.01f)
-                _playerAnimator.SetBool("isWalking", true);
+                this._playerAnimator.SetBool("isWalking", true);
             else
-                _playerAnimator.SetBool("isWalking", false);
+                this._playerAnimator.SetBool("isWalking", false);
         }
     }
 }
