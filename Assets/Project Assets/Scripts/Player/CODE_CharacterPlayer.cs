@@ -126,7 +126,7 @@ namespace CHARACTERS
             if (_timeBetweenSteps < 0 && (_rigidBodyRef.velocity.x != 0 || _rigidBodyRef.velocity.y != 0))
             {
                 _timeBetweenSteps = moveSpeed * stepSpeedFactor;
-                _soundManager.playStepSound(_playerAudioSource);
+                _soundManager.PlayStepSound(_playerAudioSource);
             }
         }
 
