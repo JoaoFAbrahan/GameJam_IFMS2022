@@ -62,6 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isColliding: 0
+  deathChecker: 0
 --- !u!1 &5737266800713304821
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +257,8 @@ MonoBehaviour:
   pressedPause: 0
   moveSpeed: 2
   stepSpeedFactor: 0.095
+  isDead: 0
+  sceneManager: {fileID: 8774298381630126501, guid: 7a5ea22013f8de843a1424fd58d217ec, type: 3}
 --- !u!82 &184768720
 AudioSource:
   m_ObjectHideFlags: 0
@@ -542,6 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isColliding: 0
+  deathChecker: 0
 --- !u!1 &8485506446938118942
 GameObject:
   m_ObjectHideFlags: 0
