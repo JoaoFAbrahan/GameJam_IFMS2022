@@ -8,8 +8,16 @@ namespace CHARACTERS
     public class CODE_BodyMovimentation : CODE_BodyRotation
     {
         public bool playerPaused;
+
+        private CODE_QuetzalSpawn _quetzalSpawn;
+
+
         private void Start()
         {
+            // Spawn position
+            _quetzalSpawn = FindObjectOfType<CODE_QuetzalSpawn>();
+            this.transform.position = _quetzalSpawn.GetSpawnPosition().position;
+
             _playerRef = GameObject.Find("PFB_Player");
             if(gameObject.name == "PFB_Quetzalcoatl")
                 target = _playerRef.transform;

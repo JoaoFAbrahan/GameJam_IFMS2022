@@ -25,7 +25,7 @@ namespace SONORIZATION
         /// </summary>
         public void FindSMAudioSource()
         {
-            _mapAudioSource = GameObject.Find("PFB_SoundManager").GetComponent<AudioSource>();
+            _mapAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         }
 
         /// <summary>
