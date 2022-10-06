@@ -7,8 +7,8 @@ namespace CHARACTERS
 {
     public class CODE_Tocha : MonoBehaviour
     {
-        public Vector2 tremularValue_MinMax = new Vector2(1.8f, 2.2f);
-        public Vector2 timer_MinMax = new Vector2(0.1f, 0.5f);
+        public Vector2 tremularValue_MinMax = new Vector2(1.85f, 2.2f);
+        public Vector2 timer_MinMax = new Vector2(0.15f, 0.25f);
 
         private float _randValue;
         private float _randTime;
