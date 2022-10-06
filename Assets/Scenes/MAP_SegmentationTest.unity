@@ -543,7 +543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1009962479
 RectTransform:
   m_ObjectHideFlags: 0
@@ -611,10 +611,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 132
+  m_fontSize: 61.05
+  m_fontSizeBase: 61.05
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 80
   m_fontStyle: 0
@@ -1087,10 +1087,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 132
+  m_fontSize: 61.05
+  m_fontSizeBase: 61.05
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 80
   m_fontStyle: 0
@@ -1355,8 +1355,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'The exit is closing and you''re running out of time. Reach the stairs
-    in the center of the maze.
+  m_text: 'You just stole a relic and the exit is closing. You''re running out of
+    time. Reach the stairs in the center of the maze.
 
 '
   m_isRightToLeft: 0
@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 75.3
+  m_fontSize: 61.05
   m_fontSizeBase: 132
   m_fontWeight: 400
   m_enableAutoSizing: 1
