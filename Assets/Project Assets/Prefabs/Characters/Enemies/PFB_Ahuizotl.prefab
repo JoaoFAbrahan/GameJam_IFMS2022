@@ -70,7 +70,7 @@ MonoBehaviour:
   speedRotation: 30
   playerState: 0
   pressedPause: 0
-  moveSpeed: 2
+  moveSpeed: 1
   sizeTargetArea: 4
 --- !u!1 &2004372279341867326
 GameObject:
