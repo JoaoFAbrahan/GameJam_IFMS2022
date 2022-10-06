@@ -20,6 +20,7 @@ namespace CHARACTERS
 
         private void Start()
         {
+            Time.timeScale = 1f;
             // Instantiating attributes
             this.moveSpeed *= this._speedFactorScale;
             this._timeBetweenSteps = this.moveSpeed * stepSpeedFactor;
@@ -33,7 +34,7 @@ namespace CHARACTERS
             _playerDeathChecker = this.transform.GetChild(0).GetComponent<CODE_PlayerColliderChecker>();
 
             // Play OST_Level00 for the first time
-            _soundManager.PlayOst("OST_Level00");
+            _soundManager.PlayOSTLevel();
 
             // Instantiating components
             _rigidBodyRef = GetComponent<Rigidbody2D>();
@@ -124,9 +125,9 @@ namespace CHARACTERS
             if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker)
             {
                 isDead = true;
+                Time.timeScale = 0f;
                 playerState = ENUM_PlayerState.UNPAUSED;
-                _soundManager.PlayOst("OST_GameOver");
-                // CHAMADA CANVAS DE MORTE
+                _soundManager.PlayOSTGameOver();
             }
         }
 
