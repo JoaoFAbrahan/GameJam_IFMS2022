@@ -55,10 +55,20 @@ MonoBehaviour:
   wiggleMagnitude: 20
   wiggleDir: {fileID: 1922673381157865481}
   bodyGameObjects:
-  - bodyGO: {fileID: 7107404048609668849, guid: 70709ab2e89f0404ba81d187eb2e7254, type: 3}
-    bodyPos: 0100000002000000030000000400000005000000
-  - bodyGO: {fileID: 1821011699424035529, guid: fd8fc1176a652214caa29a46a6b998b2, type: 3}
-    bodyPos: 06000000
+  - bodyGO: {fileID: 6047875157271125272, guid: 5d6378e406c4cfe49b3aa5ae9947b0b7, type: 3}
+    bodyPos: 01000000
+  - bodyGO: {fileID: 7798517281445328860, guid: e4a62f25119bb27499047c70f6a5512e, type: 3}
+    bodyPos: 0200000007000000
+  - bodyGO: {fileID: 6653224938057921545, guid: 16a1ed7ff6775d341b2398ab150f52df, type: 3}
+    bodyPos: 0300000006000000
+  - bodyGO: {fileID: 7755447165370114473, guid: a39eaed6c51cf1648a373104dd1b52dc, type: 3}
+    bodyPos: 040000000500000008000000
+  - bodyGO: {fileID: 3423402453180088563, guid: 1cef85ae12dc7064aab9a17088c5dd9a, type: 3}
+    bodyPos: 09000000
+  - bodyGO: {fileID: 2145041585508964486, guid: 01940741cb099444aa54e36afe7307c1, type: 3}
+    bodyPos: 0a000000
+  - bodyGO: {fileID: 5455416724147605909, guid: 33f0f9c046914d84ab384711a7673a2d, type: 3}
+    bodyPos: 0b000000
 --- !u!1 &1922673380177022060
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +202,7 @@ MonoBehaviour:
   rotationSpeed: 30
   flySpeed: 8
   target: {fileID: 0}
+  playerPaused: 0
 --- !u!61 &137566831082423418
 BoxCollider2D:
   m_ObjectHideFlags: 0
