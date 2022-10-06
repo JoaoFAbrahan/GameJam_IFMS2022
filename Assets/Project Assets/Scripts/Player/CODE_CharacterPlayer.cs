@@ -17,6 +17,7 @@ namespace CHARACTERS
         private Animator _playerAnimator;
         private CODE_PlayerColliderChecker _playerDeathChecker;
 
+
         private void Start()
         {
             // Instantiating attributes
@@ -42,7 +43,7 @@ namespace CHARACTERS
 
         private void Update()
         {
-            if(!isDead)
+            if (!isDead)
             {
                 DeathCondition();
                 PlayerInputPause();
@@ -120,7 +121,7 @@ namespace CHARACTERS
         /// </summary>
         public void DeathCondition()
         {
-            if(_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker)
+            if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker)
             {
                 isDead = true;
                 playerState = ENUM_PlayerState.UNPAUSED;
