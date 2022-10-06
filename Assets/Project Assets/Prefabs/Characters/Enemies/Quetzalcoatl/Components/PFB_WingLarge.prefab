@@ -98,6 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 30
-  flySpeed: 0
+  flySpeed: 8
   target: {fileID: 0}
   playerPaused: 0

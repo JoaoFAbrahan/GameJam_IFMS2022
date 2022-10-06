@@ -20,6 +20,8 @@ namespace CHARACTERS
         private CODE_PlayerColliderChecker _playerDeathChecker;
         private CODE_PlayerSpawn _playerSpawn;
 
+        private bool hasCalculatedGrid = true;
+
 
         private void Start()
         {
@@ -76,12 +78,17 @@ namespace CHARACTERS
             switch (playerState)
             {
                 case ENUM_PlayerState.UNPAUSED:
+                    if(!hasCalculatedGrid)
+                    {
+                        hasCalculatedGrid = true;
+                    }
                     // Execution in UNPAUSED state
                     this._playerAnimator.SetBool("hasPaused", false);
                     Movimentation();
 
                     break;
                 case ENUM_PlayerState.PAUSED:
+                    hasCalculatedGrid = false;
                     // Execution in PAUSED state
                     _rigidBodyRef.velocity = Vector2.zero;
                     this._playerAnimator.SetBool("hasPaused", true);

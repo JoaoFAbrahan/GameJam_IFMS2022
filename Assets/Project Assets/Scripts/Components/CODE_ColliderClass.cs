@@ -10,7 +10,7 @@ namespace ENVIRONMENT
         /// Disable the entity collider
         /// </summary>
         /// <param name="Collider2D"></param>
-        public void ColliderDisable(BoxCollider2D Collider2D)
+        public void ColliderDisable(CapsuleCollider2D Collider2D)
         {
             Collider2D.enabled = false;
         }
@@ -19,7 +19,7 @@ namespace ENVIRONMENT
         /// Enable the entity collider
         /// </summary>
         /// <param name="Collider2D"></param>
-        public void ColliderEnable(BoxCollider2D Collider2D)
+        public void ColliderEnable(CapsuleCollider2D Collider2D)
         {
             Collider2D.enabled = true;
         }

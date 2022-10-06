@@ -6812,22 +6812,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1922673380106134482, guid: 84ee837ead7ebb048a5442e763eb5db6, type: 3}
-      propertyPath: bodyGameObjects.Array.data[0].bodyGO
-      value: 
-      objectReference: {fileID: 7755447165370114473, guid: a39eaed6c51cf1648a373104dd1b52dc, type: 3}
-    - target: {fileID: 1922673380106134482, guid: 84ee837ead7ebb048a5442e763eb5db6, type: 3}
-      propertyPath: bodyGameObjects.Array.data[1].bodyGO
-      value: 
-      objectReference: {fileID: 6047875157271125272, guid: 5d6378e406c4cfe49b3aa5ae9947b0b7, type: 3}
-    - target: {fileID: 1922673380106134482, guid: 84ee837ead7ebb048a5442e763eb5db6, type: 3}
-      propertyPath: bodyGameObjects.Array.data[0].bodyPos.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1922673380106134482, guid: 84ee837ead7ebb048a5442e763eb5db6, type: 3}
-      propertyPath: bodyGameObjects.Array.data[1].bodyPos.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1922673380738799441, guid: 84ee837ead7ebb048a5442e763eb5db6, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -6875,6 +6859,10 @@ PrefabInstance:
     - target: {fileID: 1922673380738799443, guid: 84ee837ead7ebb048a5442e763eb5db6, type: 3}
       propertyPath: m_Name
       value: PFB_Quetzalcoatl
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922673380738799454, guid: 84ee837ead7ebb048a5442e763eb5db6, type: 3}
+      propertyPath: flySpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84ee837ead7ebb048a5442e763eb5db6, type: 3}
@@ -7212,6 +7200,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1917435954972217113, guid: 037825238c0621046acd90ea80efe189, type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1917435955313095282, guid: 037825238c0621046acd90ea80efe189, type: 3}
       propertyPath: m_RootOrder
       value: 7

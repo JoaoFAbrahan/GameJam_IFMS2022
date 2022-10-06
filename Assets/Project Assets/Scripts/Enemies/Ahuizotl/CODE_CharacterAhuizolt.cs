@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SAP2D;
 
 namespace CHARACTERS
 {
-    [RequireComponent(typeof(SAP2DAgent))]
     public class CODE_CharacterAhuizolt : ACODE_PauseClass, ICODE_CharacterMovimentation
     {
         // Attributes of class
@@ -14,7 +12,6 @@ namespace CHARACTERS
 
         private float _speedFactorScale = 10;
         private GameObject _playerRef;
-        private SAP2DAgent _agent;
         private LayerMask _playerLayer;
         private LayerMask _wallLayer;
         private RaycastHit2D _raycastHit;
@@ -31,11 +28,8 @@ namespace CHARACTERS
             this.moveSpeed *= this._speedFactorScale;
             this._playerRef = GameObject.Find("PFB_Player");
             speedRotation = _playerRef.GetComponent<CODE_CharacterPlayer>().speedRotation;
-            this._agent = this.GetComponent<SAP2DAgent>();
             this._playerLayer = LayerMask.GetMask("Player");
             this._wallLayer = LayerMask.GetMask("Wall");
-            this._agent.Target = _playerRef.transform.GetChild(0).transform;
-            this._agent.CanMove = false;
             _tempDirection = new GameObject();
             _tempDirection.transform.position = new Vector2(Random.RandomRange(-4f, 4f), Random.RandomRange(-4f, 4f));
             _pointOfRotation = GameObject.Find("Grid");
@@ -68,16 +62,14 @@ namespace CHARACTERS
             {
                 case ENUM_PlayerState.UNPAUSED:
                     // Execution in UNPAUSED state
-                    _colliderController.ColliderEnable(_spriteObjRef.GetComponent<BoxCollider2D>());
+                    _colliderController.ColliderEnable(_spriteObjRef.GetComponent<CapsuleCollider2D>());
                     Movimentation();
 
                     break;
                 case ENUM_PlayerState.PAUSED:
                     // Execution in PAUSED state
-                    _colliderController.ColliderDisable(_spriteObjRef.GetComponent<BoxCollider2D>());
+                    _colliderController.ColliderDisable(_spriteObjRef.GetComponent<CapsuleCollider2D>());
                     _rigidBodyRef.velocity = Vector2.zero;
-                    _agent.CanMove = false;
-                    _agent.Target = _tempDirection.transform;
                     MapRotation();
 
                     break;
@@ -98,21 +90,25 @@ namespace CHARACTERS
                 if (!Physics2D.Linecast(this.transform.position, _playerRef.transform.position, _wallLayer))
                 {
                     // Move the enemy in player direction
-                    _agent.Target = _playerRef.transform.GetChild(0).transform;
-                    _agent.CanMove = true;
+                    Vector3 PlayerDirection = _playerRef.transform.position - this.transform.position;
+                    float Angle = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg;
+                    _rigidBodyRef.rotation = Angle;
+                    PlayerDirection.Normalize();
+
+
+                    this._rigidBodyRef.MovePosition(this.transform.position + (PlayerDirection * moveSpeed * Time.deltaTime));
+
                 }
                 else
                 {
                     // Stop the enemy
-                    _agent.CanMove = false;
-                    MoveRandomize();
+                    //MoveRandomize();
                 }
             }
             else
             {
                 // Stop the enemy
-                _agent.CanMove = false;
-                MoveRandomize();
+               // MoveRandomize();
             }
         }
 
@@ -129,12 +125,10 @@ namespace CHARACTERS
             {
                 _randomTime = Random.RandomRange(3, 12);
                 _tempDirection = new GameObject();
-                _tempDirection.transform.position = new Vector2(Random.RandomRange(-4f, 4f), Random.RandomRange(-4f, 4f));
-                _agent.Target = _tempDirection.transform;
+                _tempDirection.transform.position = new Vector2(Random.RandomRange(-2f, 2f), Random.RandomRange(-2f, 2f));
             }
             else
             {
-                _agent.CanMove = true;
                 _randomTime -= Time.deltaTime;
             }            
         }
