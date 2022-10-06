@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 5737266801952180563}
   - component: {fileID: 184768720}
   - component: {fileID: 184768721}
+  - component: {fileID: 1047281626}
   m_Layer: 7
   m_Name: PFB_Player
   m_TagString: Untagged
@@ -363,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc0e11be4497bf143b7e6355f0ef0e2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedRotation: 30
+  speedRotation: 80
   playerState: 0
   pressedPause: 0
   moveSpeed: 2
@@ -517,6 +518,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1047281626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5737266801952180560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228c5722415939040b9d7b1a66cfbc76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tremularValue_MinMax: {x: 1.85, y: 2.2}
+  timer_MinMax: {x: 0.15, y: 0.25}
 --- !u!1 &5737266802085870210
 GameObject:
   m_ObjectHideFlags: 0
