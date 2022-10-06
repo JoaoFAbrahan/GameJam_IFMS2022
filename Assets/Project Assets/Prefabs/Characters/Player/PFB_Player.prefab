@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 1047281626}
   m_Layer: 7
   m_Name: PFB_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -369,7 +369,7 @@ MonoBehaviour:
   pressedPause: 0
   moveSpeed: 2
   stepSpeedFactor: 0.095
-  maxTime: 15
+  maxTime: 300
   sec: 0
   min: 0
   isDead: 0
