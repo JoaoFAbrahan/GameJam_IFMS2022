@@ -9,6 +9,8 @@ namespace CHARACTERS
         // Attributes of class
         public float moveSpeed = 3;
         public float stepSpeedFactor = 0.05f;
+        public float maxTime = 300;
+        public int sec, min;
         public bool isDead;
 
         private float _speedFactorScale = 2;
@@ -16,11 +18,16 @@ namespace CHARACTERS
         private AudioSource _playerAudioSource;
         private Animator _playerAnimator;
         private CODE_PlayerColliderChecker _playerDeathChecker;
+        private CODE_PlayerSpawn _playerSpawn;
 
 
         private void Start()
         {
             Time.timeScale = 1f;
+            // Spawn position
+            this._playerSpawn = FindObjectOfType<CODE_PlayerSpawn>();
+            this.transform.position = _playerSpawn.GetSpawnPosition().position;
+
             // Instantiating attributes
             this.moveSpeed *= this._speedFactorScale;
             this._timeBetweenSteps = this.moveSpeed * stepSpeedFactor;
@@ -44,6 +51,7 @@ namespace CHARACTERS
 
         private void Update()
         {
+            TimeCounter();
             if (!isDead)
             {
                 DeathCondition();
@@ -155,6 +163,22 @@ namespace CHARACTERS
             else
                 this._playerAnimator.SetBool("isWalking", false);
         }
+
+        private void TimeCounter()
+        {
+            // Timer Counter
+            maxTime -= Time.fixedDeltaTime;
+
+            // Timer create display
+            int Sec, Hour, Min;
+            Hour = (int)maxTime / 3600;
+            Min = ((int)maxTime - Hour * 3600) / 60;
+            Sec = ((int)maxTime - Hour * 3600 - Min * 60);
+
+            // Set in public attributes
+            sec = Sec;
+            min = Min;
+        }        
     }
 }
 
