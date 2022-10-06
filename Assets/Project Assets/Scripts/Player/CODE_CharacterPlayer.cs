@@ -126,6 +126,7 @@ namespace CHARACTERS
                 isDead = true;
                 playerState = ENUM_PlayerState.UNPAUSED;
                 _soundManager.PlayOst("OST_GameOver");
+                // CHAMADA CANVAS DE MORTE
             }
         }
 
