@@ -9,11 +9,14 @@ namespace CHARACTERS
         // Attributes of class
         public float moveSpeed = 3;
         public float stepSpeedFactor = 0.05f;
+        public bool isDead;
 
         private float _speedFactorScale = 2;
         private float _timeBetweenSteps;
         private AudioSource _playerAudioSource;
         private Animator _playerAnimator;
+        private CODE_PlayerColliderChecker _playerDeathChecker;
+
 
         private void Start()
         {
@@ -22,10 +25,12 @@ namespace CHARACTERS
             this._timeBetweenSteps = this.moveSpeed * stepSpeedFactor;
             this._playerAudioSource = GetComponent<AudioSource>();
             this._playerAnimator = GetComponentInChildren<Animator>();
+            this._playerCollider = GameObject.Find("PFB_Player").transform.GetChild(0).GetComponent<CapsuleCollider2D>();
             playerState = ENUM_PlayerState.UNPAUSED;
             _soundManager = GameObject.Find("PFB_SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
             _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
+            _playerDeathChecker = this.transform.GetChild(0).GetComponent<CODE_PlayerColliderChecker>();
 
             // Play OST_Level00 for the first time
             _soundManager.PlayOst("OST_Level00");
@@ -38,19 +43,21 @@ namespace CHARACTERS
 
         private void Update()
         {
-            PlayerInputPause();
-            if (_playerColliderChecker.isColliding)
+            if (!isDead)
             {
-                ColliderException(); // Change to RB.Kinematic
+                DeathCondition();
+                PlayerInputPause();
+                if (_playerColliderChecker.isColliding)
+                {
+                    //ColliderException(); // Change to RB.Kinematic
+                }
+                else if (pressedPause) // Will change player state to UNPAUSED automatically after PAUSED + COLLIDING + INPUT
+                {
+                    pressedPause = false;
+                    CheckStateAfterInput();
+                }
+                CheckState();
             }
-            else if (pressedPause) // Will change player state to UNPAUSED automatically after PAUSED + COLLIDING + INPUT
-            {
-                pressedPause = false;
-                CheckStateAfterInput();
-            }
-
-
-            CheckState();
         }
         /// <summary>
         /// Check the running state
@@ -114,7 +121,12 @@ namespace CHARACTERS
         /// </summary>
         public void DeathCondition()
         {
-            // ADD COLISION OF ENEMYS
+            if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker)
+            {
+                isDead = true;
+                playerState = ENUM_PlayerState.UNPAUSED;
+                _soundManager.PlayOst("OST_GameOver");
+            }
         }
 
         /// <summary>
@@ -126,7 +138,7 @@ namespace CHARACTERS
             if (_timeBetweenSteps < 0 && (_rigidBodyRef.velocity.x != 0 || _rigidBodyRef.velocity.y != 0))
             {
                 _timeBetweenSteps = moveSpeed * stepSpeedFactor;
-                _soundManager.playStepSound(_playerAudioSource);
+                _soundManager.PlayStepSound(_playerAudioSource);
             }
         }
 
