@@ -18,6 +18,8 @@ namespace CHARACTERS
         protected CODE_PlayerColliderChecker _playerColliderChecker;
         protected CapsuleCollider2D _playerCollider;
         protected AudioSource _quetzaAudioSource;
+        protected USER_INTERFACE.CODE_PauseMenu _timeTextMenu;
+        protected float secondsLeft;
 
         private static ENUM_PlayerState _pauseState = ENUM_PlayerState.UNPAUSED;
         private float _distanceCenterToPlayer;
@@ -67,7 +69,11 @@ namespace CHARACTERS
             {
                 _soundManager.PlayQuetzaSound(_quetzaAudioSource);
                 // Toggles Distorted Level OST
-                _soundManager.SwitchMainTheme("OST_Distorted_Level00");
+                if(secondsLeft > 12f)
+                {
+                    _soundManager.SwitchMainTheme("OST_Distorted_Level00");
+                }
+                
                 _playerCollider.enabled = false;
                 //this._rigidBodyRef.bodyType = RigidbodyType2D.Kinematic;
                 // IMPLEMENT
@@ -77,7 +83,10 @@ namespace CHARACTERS
             {
                 _soundManager.StopSFX(_quetzaAudioSource);
                 // Toggles Normal Level OST
-                _soundManager.SwitchMainTheme("OST_Level00");
+                if (secondsLeft > 12f)
+                {
+                    _soundManager.SwitchMainTheme("OST_Level00");
+                }
                 // Reset the components rotation
                 _playerCollider.enabled = true;
                 //this._rigidBodyRef.bodyType = RigidbodyType2D.Dynamic;
