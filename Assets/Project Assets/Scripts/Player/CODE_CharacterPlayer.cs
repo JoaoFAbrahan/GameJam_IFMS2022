@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CHARACTERS
 {
@@ -21,7 +22,7 @@ namespace CHARACTERS
         private CODE_PlayerSpawn _playerSpawn;
 
         private bool hasCalculatedGrid = true;
-
+        private bool _hasAlreadyPlayed = false;
 
         private void Start()
         {
@@ -36,11 +37,13 @@ namespace CHARACTERS
             this._playerAudioSource = GetComponent<AudioSource>();
             this._playerAnimator = GetComponentInChildren<Animator>();
             this._playerCollider = GameObject.Find("PFB_Player").transform.GetChild(0).GetComponent<CapsuleCollider2D>();
+            this._quetzaAudioSource = GameObject.Find("PFB_Quetzalcoatl").GetComponent<AudioSource>();
             playerState = ENUM_PlayerState.UNPAUSED;
             _soundManager = GameObject.Find("SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
             _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
             _playerDeathChecker = this.transform.GetChild(0).GetComponent<CODE_PlayerColliderChecker>();
+            _timeTextMenu = GameObject.Find("PFB_UI Canvas Timer").GetComponent<USER_INTERFACE.CODE_PauseMenu>();
 
             // Play OST_Level00 for the first time
             _soundManager.PlayOSTLevel();
@@ -53,7 +56,6 @@ namespace CHARACTERS
 
         private void Update()
         {
-            TimeCounter();
             if (!isDead)
             {
                 DeathCondition();
@@ -78,7 +80,8 @@ namespace CHARACTERS
             switch (playerState)
             {
                 case ENUM_PlayerState.UNPAUSED:
-                    if(!hasCalculatedGrid)
+                    TimeCounter();
+                    if (!hasCalculatedGrid)
                     {
                         hasCalculatedGrid = true;
                     }
@@ -137,12 +140,13 @@ namespace CHARACTERS
         /// </summary>
         public void DeathCondition()
         {
-            if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker)
+            if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker || maxTime < 1f)
             {
                 isDead = true;
                 Time.timeScale = 0f;
                 playerState = ENUM_PlayerState.UNPAUSED;
                 _soundManager.PlayOSTGameOver();
+
             }
         }
 
@@ -174,7 +178,9 @@ namespace CHARACTERS
         private void TimeCounter()
         {
             // Timer Counter
-            maxTime -= Time.fixedDeltaTime;
+            maxTime -= Time.deltaTime;
+
+            
 
             // Timer create display
             int Sec, Hour, Min;
@@ -185,6 +191,29 @@ namespace CHARACTERS
             // Set in public attributes
             sec = Sec;
             min = Min;
+
+            secondsLeft = sec;
+
+            if (Sec <= 12f)
+            {
+                
+                if (!_hasAlreadyPlayed)
+                {
+                    _soundManager.PlayOSTOutOfTime();
+                    _hasAlreadyPlayed = true;
+                }
+
+                if(sec % 2f == 0)
+                {
+                    _timeTextMenu.WarningTextColor();
+                }
+                else
+                {
+                    _timeTextMenu.WarningTextColor();
+                }
+                
+            }
+            _timeTextMenu.RefreshTimeText(Min, Sec);
         }
     }
 }

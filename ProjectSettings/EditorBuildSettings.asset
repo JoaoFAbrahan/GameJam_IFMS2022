@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MAP_Sound.unity
     guid: 65c4905a751b4f446a9b3988840910a4
   - enabled: 1
-    path: Assets/Scenes/ProductScenes/FUNCIONAIS/MAP_Level_1.unity
+    path: Assets/Scenes/ProductScenes/MAP_Level1.unity
     guid: 97bb57ba4e0032e47b7ca8c7bbe04e3e
   m_configObjects: {}
