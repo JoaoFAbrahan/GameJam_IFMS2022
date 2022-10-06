@@ -45,7 +45,6 @@ namespace CHARACTERS
             RefreshPosition();
         }
 
-
         /// <summary>
         /// Define enemy body length
         /// </summary>
@@ -64,11 +63,13 @@ namespace CHARACTERS
         private void CreateEnemyBody()
         {
             int k;
+            int j;
             // For all the body parts on the enemy
             for (int i = 0; i < _bodyParts.Length; i++)
             {
+                j = 0;
                 // Check the struct containing the Gameobjects and their positions on the body
-                for (int j = 0; j < bodyGameObjects.Length; j++)
+                for (j = 0; j < bodyGameObjects.Length; j++)
                 {
                     k = 0;
 
@@ -80,7 +81,6 @@ namespace CHARACTERS
                         {
                             // If so, instantiate it and go to the next body part
                             InstantiateBodyParts(i, bodyGameObjects[j].bodyGO);
-                            i++;
                         }
 
                         k++;

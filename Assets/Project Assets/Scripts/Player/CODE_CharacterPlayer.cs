@@ -20,6 +20,7 @@ namespace CHARACTERS
 
         private void Start()
         {
+            Time.timeScale = 1f;
             // Instantiating attributes
             this.moveSpeed *= this._speedFactorScale;
             this._timeBetweenSteps = this.moveSpeed * stepSpeedFactor;
@@ -124,6 +125,7 @@ namespace CHARACTERS
             if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker)
             {
                 isDead = true;
+                Time.timeScale = 0f;
                 playerState = ENUM_PlayerState.UNPAUSED;
                 _soundManager.PlayOSTGameOver();
             }
