@@ -78,7 +78,7 @@ MonoBehaviour:
   pathIndex: 0
   posInGrid: {x: 0, y: 0, z: 0}
   CanSearch: 1
-  PathUpdateRate: 0.8
+  PathUpdateRate: 0.5
   GetNextPointDistance: 0.1
   ShowGraphic: 1
   color:
@@ -100,8 +100,8 @@ MonoBehaviour:
   speedRotation: 30
   playerState: 0
   pressedPause: 0
-  moveSpeed: 4
-  sizeTargetArea: 5
+  moveSpeed: 0.1
+  sizeTargetArea: 4
 --- !u!1 &2004372279341867326
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2004372279341867265}
   - component: {fileID: 2004372279341867267}
-  - component: {fileID: 2004372279341867264}
+  - component: {fileID: 8602068043473874142}
   - component: {fileID: 8553443617186190451}
   m_Layer: 0
   m_Name: SpriteObj
@@ -189,8 +189,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2004372279341867264
-BoxCollider2D:
+--- !u!70 &8602068043473874142
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -203,18 +203,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.42, y: 1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.45, y: 1}
+  m_Direction: 0
 --- !u!95 &8553443617186190451
 Animator:
   serializedVersion: 4

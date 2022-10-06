@@ -20,8 +20,6 @@ namespace CHARACTERS
         private CODE_PlayerColliderChecker _playerDeathChecker;
         private CODE_PlayerSpawn _playerSpawn;
 
-        public SAP2D.SAP2DPathfinder _playerSpawnPathfinder;
-
         private bool hasCalculatedGrid = true;
 
 
@@ -31,8 +29,6 @@ namespace CHARACTERS
             // Spawn position
             this._playerSpawn = FindObjectOfType<CODE_PlayerSpawn>();
             this.transform.position = _playerSpawn.GetSpawnPosition().position;
-
-            _playerSpawnPathfinder = GameObject.Find("SAP2DManager").GetComponent<SAP2D.SAP2DPathfinder>();
 
             // Instantiating attributes
             this.moveSpeed *= this._speedFactorScale;
@@ -85,7 +81,6 @@ namespace CHARACTERS
                     if(!hasCalculatedGrid)
                     {
                         hasCalculatedGrid = true;
-                        _playerSpawnPathfinder.CalculateColliders();
                     }
                     // Execution in UNPAUSED state
                     this._playerAnimator.SetBool("hasPaused", false);
