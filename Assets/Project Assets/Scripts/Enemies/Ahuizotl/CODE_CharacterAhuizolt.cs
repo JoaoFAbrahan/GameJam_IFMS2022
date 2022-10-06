@@ -23,6 +23,9 @@ namespace CHARACTERS
         private static float _randomTime = 0;
         private static GameObject _tempDirection;
         private float _distanceCenterToMonster;
+        private Animator _enemyAnimator;
+        private Vector2 _curPostion;
+        private Vector2 _prevPosition;
 
 
         private void Start()
@@ -37,18 +40,25 @@ namespace CHARACTERS
             this._agent.Target = _playerRef.transform.GetChild(0).transform;
             this._agent.CanMove = false;
             _tempDirection = new GameObject();
-            _tempDirection.transform.position = new Vector2(Random.RandomRange(-4f, 4f), Random.RandomRange(-4f, 4f));
+            _tempDirection.transform.position = new Vector2(Random.Range(-4f, 4f), Random.Range(-4f, 4f));
             _pointOfRotation = GameObject.Find("Grid");
+            _curPostion = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            _prevPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
 
             // Instantiating components
             this._spriteObjRef = this.transform.GetChild(0).gameObject;
             this._colliderController = new ENVIRONMENT.CODE_ColliderClass();
+            this._enemyAnimator = GetComponentInChildren<Animator>();
             _rigidBodyRef = GetComponent<Rigidbody2D>();
+
         }
 
         private void Update()
         {
             CheckState();
+
+            // Play animation
+            AnimationController();
         }
 
         private void OnDrawGizmos()
@@ -127,9 +137,9 @@ namespace CHARACTERS
         {
             if (_randomTime <= 0)
             {
-                _randomTime = Random.RandomRange(3, 12);
+                _randomTime = Random.Range(3, 12);
                 _tempDirection = new GameObject();
-                _tempDirection.transform.position = new Vector2(Random.RandomRange(-4f, 4f), Random.RandomRange(-4f, 4f));
+                _tempDirection.transform.position = new Vector2(Random.Range(-4f, 4f), Random.Range(-4f, 4f));
                 _agent.Target = _tempDirection.transform;
             }
             else
@@ -137,6 +147,28 @@ namespace CHARACTERS
                 _agent.CanMove = true;
                 _randomTime -= Time.deltaTime;
             }            
+        }
+        private void AnimationController()
+        {
+            if (_agent.CanMove == true)
+            {
+                _curPostion = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                if (_curPostion == _prevPosition)
+                {
+                    this._enemyAnimator.SetBool("isRunning", false);
+                } else
+                {
+                    this._enemyAnimator.SetBool("isRunning", true);
+                }
+                _prevPosition = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+
+            }
+            else
+            {
+                this._enemyAnimator.SetBool("isRunning", false);
+
+            }
+            
         }
     }
 }
