@@ -23,7 +23,6 @@ namespace CHARACTERS
 
         private void Start()
         {
-            Time.timeScale = 1f;
             // Spawn position
             this._playerSpawn = FindObjectOfType<CODE_PlayerSpawn>();
             this.transform.position = _playerSpawn.GetSpawnPosition().position;
@@ -39,6 +38,7 @@ namespace CHARACTERS
             _soundManager.FindSMAudioSource();
             _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
             _playerDeathChecker = this.transform.GetChild(0).GetComponent<CODE_PlayerColliderChecker>();
+            Time.timeScale = 1f;
 
             // Play OST_Level00 for the first time
             _soundManager.PlayOSTLevel();
