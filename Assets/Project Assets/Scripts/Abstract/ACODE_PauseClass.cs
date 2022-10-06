@@ -17,6 +17,7 @@ namespace CHARACTERS
         protected SONORIZATION.CODE_SoundManager _soundManager;
         protected CODE_PlayerColliderChecker _playerColliderChecker;
         protected CapsuleCollider2D _playerCollider;
+        protected AudioSource _quetzaAudioSource;
 
         private static ENUM_PlayerState _pauseState = ENUM_PlayerState.UNPAUSED;
         private float _distanceCenterToPlayer;
@@ -36,10 +37,10 @@ namespace CHARACTERS
         /// </summary>
         protected void PlayerInputPause()
         {
-            if (Input.GetKeyDown(KeyCode.P))
-            {
-                _soundManager.PlayOSTOutOfTime();
-            }
+            //if (Input.GetKeyDown(KeyCode.P))
+            //{
+            //    _soundManager.PlayOSTOutOfTime();
+            //}
             // Unique state which the player is PAUSED, COLLIDING and PRESSING SPACE
             if (Input.GetKeyDown(KeyCode.Space) && _playerColliderChecker.isColliding && playerState == ENUM_PlayerState.PAUSED)
             {
@@ -50,7 +51,7 @@ namespace CHARACTERS
             if (Input.GetKeyDown(KeyCode.Space) && !pressedPause)
             {
                 if (!_playerColliderChecker.isColliding)
-                {
+                {  
                     // Always run on the first state cycle
                     CheckStateAfterInput();
                 }
@@ -64,6 +65,7 @@ namespace CHARACTERS
 
             if (playerState == ENUM_PlayerState.PAUSED)
             {
+                _soundManager.PlayQuetzaSound(_quetzaAudioSource);
                 // Toggles Distorted Level OST
                 _soundManager.SwitchMainTheme("OST_Distorted_Level00");
                 _playerCollider.enabled = false;
@@ -73,6 +75,7 @@ namespace CHARACTERS
 
             if (playerState == ENUM_PlayerState.UNPAUSED)
             {
+                _soundManager.StopSFX(_quetzaAudioSource);
                 // Toggles Normal Level OST
                 _soundManager.SwitchMainTheme("OST_Level00");
                 // Reset the components rotation

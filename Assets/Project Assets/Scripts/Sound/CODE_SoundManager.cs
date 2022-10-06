@@ -113,6 +113,11 @@ namespace SONORIZATION
             Source.Play();
         }
 
+        public void StopSFX(AudioSource Source)
+        {
+            Source.Stop();
+        }
+
         private void ChangeToStandardSettings()
         {
             _mapAudioSource.pitch = 1f;
@@ -154,6 +159,11 @@ namespace SONORIZATION
         public void PlayStepSound(AudioSource Source)
         {
             SearchAudioClip("SFX_PlayerStep2", sfxClips, Source);
+        }
+
+        public void PlayQuetzaSound(AudioSource Source)
+        {
+            SearchAudioClip("SFX_Quetza1", sfxClips, Source);
         }
     }
 }

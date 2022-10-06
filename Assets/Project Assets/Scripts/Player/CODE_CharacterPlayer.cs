@@ -36,6 +36,7 @@ namespace CHARACTERS
             this._playerAudioSource = GetComponent<AudioSource>();
             this._playerAnimator = GetComponentInChildren<Animator>();
             this._playerCollider = GameObject.Find("PFB_Player").transform.GetChild(0).GetComponent<CapsuleCollider2D>();
+            this._quetzaAudioSource = GameObject.Find("PFB_Quetzalcoatl").GetComponent<AudioSource>();
             playerState = ENUM_PlayerState.UNPAUSED;
             _soundManager = GameObject.Find("SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
