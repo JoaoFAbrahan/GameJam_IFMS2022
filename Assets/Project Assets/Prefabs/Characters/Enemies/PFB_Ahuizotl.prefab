@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2004372278388773087}
   - component: {fileID: 2004372278388773084}
-  - component: {fileID: 2044659307120793177}
   - component: {fileID: 2004372278388773085}
   m_Layer: 8
   m_Name: PFB_Ahuizotl
@@ -56,35 +55,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2044659307120793177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004372278388773082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 436bc0f096be0d34ba379a789d03ec45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Config: {fileID: 11400000, guid: b326ffdf8cda603499980307d04a352b, type: 2}
-  MouseControl: 0
-  Target: {fileID: 0}
-  CanMove: 0
-  MovementSpeed: 5
-  RotationSpeed: 500
-  isMoving: 0
-  pathIndex: 0
-  posInGrid: {x: 0, y: 0, z: 0}
-  CanSearch: 1
-  PathUpdateRate: 0.5
-  GetNextPointDistance: 0.1
-  ShowGraphic: 1
-  color:
-    serializedVersion: 2
-    rgba: 4292990208
-  path: []
 --- !u!114 &2004372278388773085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +70,7 @@ MonoBehaviour:
   speedRotation: 30
   playerState: 0
   pressedPause: 0
-  moveSpeed: 0.1
+  moveSpeed: 2
   sizeTargetArea: 4
 --- !u!1 &2004372279341867326
 GameObject:
