@@ -23,6 +23,7 @@ namespace CHARACTERS
 
         private void Start()
         {
+            Time.timeScale = 1f;
             // Spawn position
             this._playerSpawn = FindObjectOfType<CODE_PlayerSpawn>();
             this.transform.position = _playerSpawn.GetSpawnPosition().position;
@@ -34,11 +35,10 @@ namespace CHARACTERS
             this._playerAnimator = GetComponentInChildren<Animator>();
             this._playerCollider = GameObject.Find("PFB_Player").transform.GetChild(0).GetComponent<CapsuleCollider2D>();
             playerState = ENUM_PlayerState.UNPAUSED;
-            _soundManager = GameObject.Find("PFB_SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
+            _soundManager = GameObject.Find("SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
             _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
             _playerDeathChecker = this.transform.GetChild(0).GetComponent<CODE_PlayerColliderChecker>();
-            Time.timeScale = 1f;
 
             // Play OST_Level00 for the first time
             _soundManager.PlayOSTLevel();
@@ -178,7 +178,7 @@ namespace CHARACTERS
             // Set in public attributes
             sec = Sec;
             min = Min;
-        }        
+        }
     }
 }
 
