@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CHARACTERS
 {
@@ -145,6 +146,7 @@ namespace CHARACTERS
                 Time.timeScale = 0f;
                 playerState = ENUM_PlayerState.UNPAUSED;
                 _soundManager.PlayOSTGameOver();
+
             }
         }
 

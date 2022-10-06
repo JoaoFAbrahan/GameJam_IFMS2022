@@ -24,7 +24,7 @@ namespace USER_INTERFACE
 
         public void StartGame()
         {
-            SceneManager.LoadScene(startScene);
+            SceneManager.LoadScene(0);
         }
 
         public void QuitGame()
