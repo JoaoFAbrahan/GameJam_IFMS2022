@@ -155,6 +155,27 @@ namespace SONORIZATION
         {
             SearchAudioClip("SFX_PlayerStep2", sfxClips, Source);
         }
+
+        public void PlayQuetzaSound(AudioSource Source)
+        {
+            int i = Random.RandomRange(0, 2);
+            string AudioName = "SFX_Quetza1";
+            switch (i)
+            {
+                case 0:
+                    AudioName = "SFX_Quetza1";
+                    break;
+                case 1:
+                    AudioName = "SFX_Quetza2";
+                    break;
+                case 2:
+                    AudioName = "SFX_Quetza3";
+                    break;
+                default:
+                    break;
+            }
+            SearchAudioClip(AudioName, sfxClips, Source);
+        }
     }
 }
 

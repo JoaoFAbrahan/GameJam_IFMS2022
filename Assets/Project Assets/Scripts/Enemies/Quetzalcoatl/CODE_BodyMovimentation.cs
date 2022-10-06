@@ -11,6 +11,9 @@ namespace CHARACTERS
 
         private CODE_QuetzalSpawn _quetzalSpawn;
 
+        protected SONORIZATION.CODE_SoundManager _soundManager;
+       
+
 
         private void Start()
         {
@@ -20,7 +23,10 @@ namespace CHARACTERS
 
             _playerRef = GameObject.Find("PFB_Player");
             if(gameObject.name == "PFB_Quetzalcoatl")
+            {
                 target = _playerRef.transform;
+            }
+                
         }
 
         void Update()
