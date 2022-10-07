@@ -285,6 +285,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4554412367044876930, guid: 2f4ae63aa6425614fbc1a16c3c3abda2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1216081152}
+    - target: {fileID: 4554412367044876930, guid: 2f4ae63aa6425614fbc1a16c3c3abda2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseUnpause
+      objectReference: {fileID: 0}
+    - target: {fileID: 4554412367044876930, guid: 2f4ae63aa6425614fbc1a16c3c3abda2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: USER_INTERFACE.CODE_PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5866549767818947075, guid: 2f4ae63aa6425614fbc1a16c3c3abda2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -68459,6 +68471,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1216081152 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5866549767818947072, guid: 2f4ae63aa6425614fbc1a16c3c3abda2, type: 3}
+  m_PrefabInstance: {fileID: 100187901}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5696177a52d757e46ba3effc6e6db2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1265814986
 GameObject:
   m_ObjectHideFlags: 0
@@ -68971,6 +68994,7 @@ GameObject:
   - component: {fileID: 1510088958}
   - component: {fileID: 1510088960}
   - component: {fileID: 1510088959}
+  - component: {fileID: 1510088961}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -103216,6 +103240,22 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1510088961
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510088957}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0.00001
 --- !u!1001 &1553304097
 PrefabInstance:
   m_ObjectHideFlags: 0

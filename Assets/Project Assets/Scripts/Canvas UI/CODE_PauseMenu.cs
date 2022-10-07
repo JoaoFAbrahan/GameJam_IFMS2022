@@ -36,10 +36,14 @@ namespace USER_INTERFACE
         void Update()
         {
             timer -= Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if(this.gameObject.name == "PFB_UI Canvas Levels")
             {
-                PauseUnpause();
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    PauseUnpause();
+                }
             }
+           
         }
 
         public void RefreshTimeText(int Min, int Sec)
