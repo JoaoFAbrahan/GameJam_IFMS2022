@@ -163,8 +163,7 @@ namespace CHARACTERS
             if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker || maxTime < 1f)
             {
                 _pauseMenu.DeathMenu();
-                isDead = true;
-                Time.timeScale = 0f;
+                isDead = true;      
                 playerState = ENUM_PlayerState.UNPAUSED;
                 _soundManager.PlayOSTGameOver();
 

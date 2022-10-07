@@ -26,7 +26,10 @@ namespace USER_INTERFACE
         // Start is called before the first frame update
         void Start()
         {
-            _deathImage = this.transform.GetChild(1).gameObject;
+            if (this.gameObject.name == "PFB_UI Canvas Levels")
+            {
+                _deathImage = this.transform.GetChild(1).gameObject;
+            }
         }
 
         // Update is called once per frame
@@ -85,14 +88,15 @@ namespace USER_INTERFACE
         public void DeathMenu()
         {
             this._deathImage.SetActive(true);
-            StartCoroutine(TimeToContinue());
+            StartCoroutine(nameof(TimeToContinue));
         }
         
-        private IEnumerator TimeToContinue()
+        public IEnumerator TimeToContinue()
         {
-            yield return new WaitForSeconds(3);
-
-            this._deathImage.SetActive(false);
+            Time.timeScale = 1f;
+            yield return new WaitForSeconds(5f);
+            Debug.Log("Ola");
+            CODE_ParameterBetweenScenes.calledFromMenu = false;
             SceneManager.LoadScene("MAP_Level1");
         }
     }
