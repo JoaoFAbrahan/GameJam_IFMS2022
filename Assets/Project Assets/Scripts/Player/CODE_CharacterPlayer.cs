@@ -43,7 +43,7 @@ namespace CHARACTERS
 
                     break;
             }
-            Time.timeScale = 1f;
+            //Time.timeScale = 1f;
             // Spawn position
             this._playerSpawn = FindObjectOfType<CODE_PlayerSpawn>();
             this.transform.position = _playerSpawn.GetSpawnPosition().position;
@@ -73,7 +73,7 @@ namespace CHARACTERS
 
         private void Update()
         {
-            if (!isDead)
+            if (!isDead && Time.timeScale != 0f)
             {
                 DeathCondition();
                 PlayerInputPause();
