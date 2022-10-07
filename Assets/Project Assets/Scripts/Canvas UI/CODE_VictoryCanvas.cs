@@ -10,18 +10,20 @@ public class CODE_VictoryCanvas : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
+        StartCoroutine(nameof(TimeToMenu));
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            StartCoroutine(nameof(TimeToMenu));
+            SceneManager.LoadScene("MAP_MainMenu");
         }
+            
+        
     }
 
     public IEnumerator TimeToMenu()
     {
-        
+
+        yield return new WaitForSeconds(40f);
         victoryPanel.SetActive(true);
         timePanel.SetActive(false);
-        yield return new WaitForSeconds(6f);
-        SceneManager.LoadScene("MAP_MainMenu");
     }
 }
