@@ -22,6 +22,7 @@ namespace CHARACTERS
         private Animator _playerAnimator;
         private CODE_PlayerColliderChecker _playerDeathChecker;
         private CODE_PlayerSpawn _playerSpawn;
+        private USER_INTERFACE.CODE_PauseMenu _pauseMenu;
 
         private bool hasCalculatedGrid = true;
         private bool _hasAlreadyPlayed = false;
@@ -43,6 +44,7 @@ namespace CHARACTERS
 
                     break;
             }
+
             Time.timeScale = 1f;
             // Spawn position
             this._playerSpawn = FindObjectOfType<CODE_PlayerSpawn>();
@@ -61,6 +63,7 @@ namespace CHARACTERS
             _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
             _playerDeathChecker = this.transform.GetChild(0).GetComponent<CODE_PlayerColliderChecker>();
             _timeTextMenu = GameObject.Find("PFB_UI Canvas Timer").GetComponent<USER_INTERFACE.CODE_PauseMenu>();
+            _pauseMenu = GameObject.Find("PFB_UI Canvas Levels").GetComponent<USER_INTERFACE.CODE_PauseMenu>();
 
             // Play OST_Level00 for the first time
             _soundManager.PlayOSTLevel();
@@ -159,6 +162,7 @@ namespace CHARACTERS
         {
             if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker || maxTime < 1f)
             {
+                _pauseMenu.DeathMenu();
                 isDead = true;
                 Time.timeScale = 0f;
                 playerState = ENUM_PlayerState.UNPAUSED;

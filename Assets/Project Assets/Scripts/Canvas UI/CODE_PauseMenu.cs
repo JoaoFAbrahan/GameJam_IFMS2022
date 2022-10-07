@@ -21,11 +21,12 @@ namespace USER_INTERFACE
 
         private bool changedColorThisFrame;
         public float timer;
+        private GameObject _deathImage;
 
         // Start is called before the first frame update
         void Start()
         {
-
+            _deathImage = this.transform.GetChild(1).gameObject;
         }
 
         // Update is called once per frame
@@ -79,6 +80,20 @@ namespace USER_INTERFACE
         {
             SceneManager.LoadScene(mainMenu);
             Time.timeScale = 1f;
+        }
+
+        public void DeathMenu()
+        {
+            this._deathImage.SetActive(true);
+            StartCoroutine(TimeToContinue());
+        }
+        
+        private IEnumerator TimeToContinue()
+        {
+            yield return new WaitForSeconds(3);
+
+            this._deathImage.SetActive(false);
+            SceneManager.LoadScene("MAP_Level1");
         }
     }
 }
