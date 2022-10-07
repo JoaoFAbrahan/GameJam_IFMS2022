@@ -7,7 +7,7 @@ using TMPro;
 
 namespace USER_INTERFACE
 {
-    public class CODE_PauseMenu : MonoBehaviour
+    public class CODE_PauseCanvas: MonoBehaviour
     {
         public string mainMenu;
 
@@ -38,14 +38,14 @@ namespace USER_INTERFACE
         void Update()
         {
             timer -= Time.deltaTime;
-            if(this.gameObject.name == "PFB_UI Canvas Levels")
+            if (this.gameObject.name == "PFB_UI Canvas Levels")
             {
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    SceneManager.LoadScene("MAP_MainMenu");
+                    PauseUnpause();
                 }
             }
-           
+
         }
 
         public void RefreshTimeText(int Min, int Sec)
@@ -65,7 +65,7 @@ namespace USER_INTERFACE
         }
 
         private Color FlipFlop()
-        { 
+        {
             return _flipColor == timerText.color ? Color.red : Color.white;
         }
 
@@ -97,7 +97,7 @@ namespace USER_INTERFACE
             this.timerCanvas.SetActive(false);
             StartCoroutine(nameof(TimeToContinue));
         }
-        
+
         public IEnumerator TimeToContinue()
         {
             Time.timeScale = 1f;
