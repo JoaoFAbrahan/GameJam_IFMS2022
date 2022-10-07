@@ -14,6 +14,8 @@ namespace CHARACTERS
         public int sec, min;
         public bool isDead;
 
+        public float s;
+
         private float _speedFactorScale = 2;
         private float _timeBetweenSteps;
         private AudioSource _playerAudioSource;
@@ -26,6 +28,21 @@ namespace CHARACTERS
 
         private void Start()
         {
+            switch(SceneManager.GetActiveScene().name)
+            {
+                case "MAP_Level1":
+                    maxTime = 300f;
+
+                    break;
+                case "MAP_Level2":
+                    maxTime = 500f;
+
+                    break;
+                case "MAP_Level3":
+                    maxTime = 600f;
+
+                    break;
+            }
             Time.timeScale = 1f;
             // Spawn position
             this._playerSpawn = FindObjectOfType<CODE_PlayerSpawn>();
@@ -180,7 +197,7 @@ namespace CHARACTERS
             // Timer Counter
             maxTime -= Time.deltaTime;
 
-            
+           
 
             // Timer create display
             int Sec, Hour, Min;
@@ -192,9 +209,11 @@ namespace CHARACTERS
             sec = Sec;
             min = Min;
 
-            secondsLeft = sec;
+           
+            secondsLeft = maxTime - Time.deltaTime;
+            s = secondsLeft;
 
-            if (Sec <= 12f)
+            if (secondsLeft <= 12f)
             {
                 
                 if (!_hasAlreadyPlayed)
@@ -203,7 +222,7 @@ namespace CHARACTERS
                     _hasAlreadyPlayed = true;
                 }
 
-                if(sec % 2f == 0)
+                if(secondsLeft % 2f == 0)
                 {
                     _timeTextMenu.WarningTextColor();
                 }
