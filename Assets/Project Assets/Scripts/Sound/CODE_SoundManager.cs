@@ -165,6 +165,11 @@ namespace SONORIZATION
         {
             SearchAudioClip("SFX_Quetza1", sfxClips, Source);
         }
+
+        public void PlayButtonSound(AudioSource Source)
+        {
+            SearchAudioClip("SFX_Button", sfxClips, Source);
+        }
     }
 }
 
