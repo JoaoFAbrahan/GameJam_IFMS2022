@@ -26,6 +26,11 @@ namespace USER_INTERFACE
             SceneManager.LoadScene(startScene);
         }
 
+        public void Credits()
+        {
+            SceneManager.LoadScene("MAP_Credits");
+        }
+
         public void QuitGame()
         {
             Application.Quit();
