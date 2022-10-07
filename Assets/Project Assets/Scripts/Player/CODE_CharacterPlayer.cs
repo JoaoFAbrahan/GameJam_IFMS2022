@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CHARACTERS
 {
@@ -9,31 +10,63 @@ namespace CHARACTERS
         // Attributes of class
         public float moveSpeed = 3;
         public float stepSpeedFactor = 0.05f;
+        public float maxTime = 300;
+        public int sec, min;
         public bool isDead;
+
+        public float s;
 
         private float _speedFactorScale = 2;
         private float _timeBetweenSteps;
         private AudioSource _playerAudioSource;
         private Animator _playerAnimator;
         private CODE_PlayerColliderChecker _playerDeathChecker;
+        private CODE_PlayerSpawn _playerSpawn;
+        private USER_INTERFACE.CODE_PauseMenu _pauseMenu;
 
+        private bool hasCalculatedGrid = true;
+        private bool _hasAlreadyPlayed = false;
 
         private void Start()
         {
+            switch(SceneManager.GetActiveScene().name)
+            {
+                case "MAP_Level1":
+                    maxTime = 300f;
+
+                    break;
+                case "MAP_Level2":
+                    maxTime = 500f;
+
+                    break;
+                case "MAP_Level3":
+                    maxTime = 600f;
+
+                    break;
+            }
+
+            Time.timeScale = 1f;
+            // Spawn position
+            this._playerSpawn = FindObjectOfType<CODE_PlayerSpawn>();
+            this.transform.position = _playerSpawn.GetSpawnPosition().position;
+
             // Instantiating attributes
             this.moveSpeed *= this._speedFactorScale;
             this._timeBetweenSteps = this.moveSpeed * stepSpeedFactor;
             this._playerAudioSource = GetComponent<AudioSource>();
             this._playerAnimator = GetComponentInChildren<Animator>();
             this._playerCollider = GameObject.Find("PFB_Player").transform.GetChild(0).GetComponent<CapsuleCollider2D>();
+            this._quetzaAudioSource = GameObject.Find("PFB_Quetzalcoatl").GetComponent<AudioSource>();
             playerState = ENUM_PlayerState.UNPAUSED;
-            _soundManager = GameObject.Find("PFB_SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
+            _soundManager = GameObject.Find("SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
             _soundManager.FindSMAudioSource();
             _playerColliderChecker = this.transform.GetChild(2).GetComponent<CODE_PlayerColliderChecker>();
             _playerDeathChecker = this.transform.GetChild(0).GetComponent<CODE_PlayerColliderChecker>();
+            _timeTextMenu = GameObject.Find("PFB_UI Canvas Timer").GetComponent<USER_INTERFACE.CODE_PauseMenu>();
+            _pauseMenu = GameObject.Find("PFB_UI Canvas Levels").GetComponent<USER_INTERFACE.CODE_PauseMenu>();
 
             // Play OST_Level00 for the first time
-            _soundManager.PlayOst("OST_Level00");
+            _soundManager.PlayOSTLevel();
 
             // Instantiating components
             _rigidBodyRef = GetComponent<Rigidbody2D>();
@@ -43,7 +76,7 @@ namespace CHARACTERS
 
         private void Update()
         {
-            if (!isDead)
+            if (!isDead && Time.timeScale != 0f)
             {
                 DeathCondition();
                 PlayerInputPause();
@@ -67,12 +100,18 @@ namespace CHARACTERS
             switch (playerState)
             {
                 case ENUM_PlayerState.UNPAUSED:
+                    TimeCounter();
+                    if (!hasCalculatedGrid)
+                    {
+                        hasCalculatedGrid = true;
+                    }
                     // Execution in UNPAUSED state
                     this._playerAnimator.SetBool("hasPaused", false);
                     Movimentation();
 
                     break;
                 case ENUM_PlayerState.PAUSED:
+                    hasCalculatedGrid = false;
                     // Execution in PAUSED state
                     _rigidBodyRef.velocity = Vector2.zero;
                     this._playerAnimator.SetBool("hasPaused", true);
@@ -121,11 +160,13 @@ namespace CHARACTERS
         /// </summary>
         public void DeathCondition()
         {
-            if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker)
+            if (_playerDeathChecker.deathChecker || _playerColliderChecker.deathChecker || maxTime < 1f)
             {
-                isDead = true;
+                _pauseMenu.DeathMenu();
+                isDead = true;      
                 playerState = ENUM_PlayerState.UNPAUSED;
-                _soundManager.PlayOst("OST_GameOver");
+                _soundManager.PlayOSTGameOver();
+
             }
         }
 
@@ -152,6 +193,49 @@ namespace CHARACTERS
                 this._playerAnimator.SetBool("isWalking", true);
             else
                 this._playerAnimator.SetBool("isWalking", false);
+        }
+
+        private void TimeCounter()
+        {
+            // Timer Counter
+            maxTime -= Time.deltaTime;
+
+           
+
+            // Timer create display
+            int Sec, Hour, Min;
+            Hour = (int)maxTime / 3600;
+            Min = ((int)maxTime - Hour * 3600) / 60;
+            Sec = ((int)maxTime - Hour * 3600 - Min * 60);
+
+            // Set in public attributes
+            sec = Sec;
+            min = Min;
+
+           
+            secondsLeft = maxTime - Time.deltaTime;
+            s = secondsLeft;
+
+            if (secondsLeft <= 12f)
+            {
+                
+                if (!_hasAlreadyPlayed)
+                {
+                    _soundManager.PlayOSTOutOfTime();
+                    _hasAlreadyPlayed = true;
+                }
+
+                if(secondsLeft % 2f == 0)
+                {
+                    _timeTextMenu.WarningTextColor();
+                }
+                else
+                {
+                    _timeTextMenu.WarningTextColor();
+                }
+                
+            }
+            _timeTextMenu.RefreshTimeText(Min, Sec);
         }
     }
 }

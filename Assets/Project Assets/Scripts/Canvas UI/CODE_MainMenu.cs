@@ -9,21 +9,20 @@ namespace USER_INTERFACE
     {
         public string startScene;
 
+        private SONORIZATION.CODE_SoundManager _soundManager;
 
         // Start is called before the first frame update
         void Start()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            CODE_ParameterBetweenScenes.calledFromMenu = true;
+            _soundManager = GameObject.Find("SoundManager").GetComponent<SONORIZATION.CODE_SoundManager>();
+            _soundManager.PlayOSTMainMenu();
         }
 
         public void StartGame()
         {
+            CODE_ParameterBetweenScenes.calledFromMenu = true;
+            _soundManager.PlayButtonSound(GameObject.Find("SoundManager").GetComponent<AudioSource>());
             SceneManager.LoadScene(startScene);
         }
 

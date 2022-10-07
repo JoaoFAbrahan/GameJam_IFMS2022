@@ -25,7 +25,7 @@ namespace SONORIZATION
         /// </summary>
         public void FindSMAudioSource()
         {
-            _mapAudioSource = GameObject.Find("PFB_SoundManager").GetComponent<AudioSource>();
+            _mapAudioSource = GameObject.Find("SoundManager").GetComponent<AudioSource>();
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace SONORIZATION
         /// <summary>
         /// Function to change soundtracks
         /// </summary>
-        public void PlayOst(string OstName)
+        private void PlayOst(string OstName)
         {
             SearchAudioClip(OstName, ostClips, _mapAudioSource);
         }
@@ -105,15 +105,52 @@ namespace SONORIZATION
                 }
             }
 
-            if(Source != null)
-                if(AudioName == "OST_GameOver")
-                {
-                    _mapAudioSource.pitch = 1f;
-                    _mapAudioSource.time = 0f;
-                    _mapAudioSource.loop = false;
-                    _isPlayingDistorted = false;
-                }
-                Source.Play();
+            if ((AudioName.StartsWith("OST_") && (AudioName != "OST_Level00" && AudioName != "OST_Distorted_Level00")))
+            {
+                ChangeToStandardSettings();
+            }
+           
+            Source.Play();
+        }
+
+        public void StopSFX(AudioSource Source)
+        {
+            Source.Stop();
+        }
+
+        private void ChangeToStandardSettings()
+        {
+            _mapAudioSource.pitch = 1f;
+            _mapAudioSource.time = 0f;
+            _isPlayingDistorted = false;
+        }
+
+        /// <summary>
+        /// Function for soundtracks
+        /// </summary>
+        
+        public void PlayOSTLevel()
+        {
+            _mapAudioSource.loop = true;
+            PlayOst("OST_Level00");
+        }
+        
+        public void PlayOSTGameOver()
+        {
+            _mapAudioSource.loop = false;
+            PlayOst("OST_GameOver");
+        }
+
+        public void PlayOSTOutOfTime()
+        {
+            _mapAudioSource.loop = false;
+            PlayOst("OST_TimeIsTicking");
+        }
+
+        public void PlayOSTMainMenu()
+        {
+            _mapAudioSource.loop = true;
+            PlayOst("OST_MainMenu");
         }
 
         /// <summary>
@@ -122,6 +159,16 @@ namespace SONORIZATION
         public void PlayStepSound(AudioSource Source)
         {
             SearchAudioClip("SFX_PlayerStep2", sfxClips, Source);
+        }
+
+        public void PlayQuetzaSound(AudioSource Source)
+        {
+            SearchAudioClip("SFX_Quetza1", sfxClips, Source);
+        }
+
+        public void PlayButtonSound(AudioSource Source)
+        {
+            SearchAudioClip("SFX_Button", sfxClips, Source);
         }
     }
 }
