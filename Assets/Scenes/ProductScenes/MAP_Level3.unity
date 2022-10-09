@@ -297,6 +297,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: USER_INTERFACE.CODE_PauseMenu, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 5866549767818947072, guid: 2f4ae63aa6425614fbc1a16c3c3abda2, type: 3}
+      propertyPath: timerCanvas
+      value: 
+      objectReference: {fileID: 1150181535}
     - target: {fileID: 5866549767818947075, guid: 2f4ae63aa6425614fbc1a16c3c3abda2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -68270,6 +68274,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2703630571133122970, guid: 25a3dc3195bb54e4bb91306108c24292, type: 3}
+      propertyPath: timerCanvas
+      value: 
+      objectReference: {fileID: 1150181535}
     - target: {fileID: 4380645283163800957, guid: 25a3dc3195bb54e4bb91306108c24292, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -68360,6 +68368,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25a3dc3195bb54e4bb91306108c24292, type: 3}
+--- !u!1 &1150181535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2381736876568599937, guid: 25a3dc3195bb54e4bb91306108c24292, type: 3}
+  m_PrefabInstance: {fileID: 1150181534}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1173804550
 GameObject:
   m_ObjectHideFlags: 0

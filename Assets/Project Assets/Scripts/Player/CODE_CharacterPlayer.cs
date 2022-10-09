@@ -32,15 +32,15 @@ namespace CHARACTERS
             switch(SceneManager.GetActiveScene().name)
             {
                 case "MAP_Level1":
-                    maxTime = 300f;
+                    maxTime = 100f;
 
                     break;
                 case "MAP_Level2":
-                    maxTime = 500f;
+                    maxTime = 250f;
 
                     break;
                 case "MAP_Level3":
-                    maxTime = 600f;
+                    maxTime = 300f;
 
                     break;
             }

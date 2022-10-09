@@ -24,6 +24,6 @@ public class CODE_VictoryCanvas : MonoBehaviour
 
         yield return new WaitForSeconds(40f);
         victoryPanel.SetActive(true);
-        timePanel.SetActive(false);
+        //timePanel.SetActive(false);
     }
 }

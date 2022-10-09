@@ -14,7 +14,8 @@ public class CODE_PlayerPth : MonoBehaviour
 
     private void Update()
     {
-        Vector3 Direction = target.position - transform.position;
+        Vector3 Direction = new Vector3(target.position.x, transform.position.y, transform.position.z) - transform.position;
+
         this.transform.Translate(Direction.normalized * speed * Time.deltaTime, Space.World);
     }
 }
